@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:IntegratorMobile.UI.Controls;assembly=IntegratorMobile.UI"
+             x:Class="IntegratorMobile.Views.Settings.SettingsPage"
+             Title="Settings"
+             BackgroundColor="{StaticResource BackgroundSecondary}">
+    
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="16">
+            
+            <!-- Sync Settings -->
+            <Label Text="SYNC" Style="{StaticResource Caption}" Margin="4,0,0,0" />
+            
+            <controls:AppCard CardPadding="0">
+                <VerticalStackLayout>
+                    <Grid Padding="16" ColumnDefinitions="*,Auto">
+                        <VerticalStackLayout>
+                            <Label Text="Auto-Sync" Style="{StaticResource BodyLarge}" />
+                            <Label Text="Sync data when connected to WiFi" Style="{StaticResource Caption}" />
+                        </VerticalStackLayout>
+                        <Switch Grid.Column="1" IsToggled="True" OnColor="{StaticResource Primary600}" />
+                    </Grid>
+                    
+                    <BoxView HeightRequest="1" Color="{StaticResource BorderLight}" Margin="16,0" />
+                    
+                    <Grid Padding="16" ColumnDefinitions="*,Auto">
+                        <VerticalStackLayout>
+                            <Label Text="Last Synced" Style="{StaticResource BodyMedium}" />
+                        </VerticalStackLayout>
+                        <Label Grid.Column="1" Text="Just now" 
+                               Style="{StaticResource BodyMedium}" 
+                               TextColor="{StaticResource TextSecondary}" />
+                    </Grid>
+                </VerticalStackLayout>
+            </controls:AppCard>
+            
+            <!-- Photo Settings -->
+            <Label Text="PHOTOS" Style="{StaticResource Caption}" Margin="4,8,0,0" />
+            
+            <controls:AppCard CardPadding="0">
+                <VerticalStackLayout>
+                    <Grid Padding="16" ColumnDefinitions="*,Auto">
+                        <VerticalStackLayout>
+                            <Label Text="Photo Quality" Style="{StaticResource BodyLarge}" />
+                            <Label Text="Medium (Recommended)" Style="{StaticResource Caption}" />
+                        </VerticalStackLayout>
+                        <Label Grid.Column="1" Text="›" FontSize="24" 
+                               TextColor="{StaticResource TextTertiary}" VerticalOptions="Center" />
+                    </Grid>
+                    
+                    <BoxView HeightRequest="1" Color="{StaticResource BorderLight}" Margin="16,0" />
+                    
+                    <Grid Padding="16" ColumnDefinitions="*,Auto">
+                        <VerticalStackLayout>
+                            <Label Text="Include Location in Photos" Style="{StaticResource BodyLarge}" />
+                            <Label Text="GPS data embedded in photos" Style="{StaticResource Caption}" />
+                        </VerticalStackLayout>
+                        <Switch Grid.Column="1" IsToggled="True" OnColor="{StaticResource Primary600}" />
+                    </Grid>
+                </VerticalStackLayout>
+            </controls:AppCard>
+            
+            <!-- Notifications -->
+            <Label Text="NOTIFICATIONS" Style="{StaticResource Caption}" Margin="4,8,0,0" />
+            
+            <controls:AppCard CardPadding="0">
+                <Grid Padding="16" ColumnDefinitions="*,Auto">
+                    <VerticalStackLayout>
+                        <Label Text="Push Notifications" Style="{StaticResource BodyLarge}" />
+                        <Label Text="Receive appointment reminders" Style="{StaticResource Caption}" />
+                    </VerticalStackLayout>
+                    <Switch Grid.Column="1" IsToggled="True" OnColor="{StaticResource Primary600}" />
+                </Grid>
+            </controls:AppCard>
+            
+            <!-- About -->
+            <Label Text="ABOUT" Style="{StaticResource Caption}" Margin="4,8,0,0" />
+            
+            <controls:AppCard CardPadding="0">
+                <VerticalStackLayout>
+                    <Grid Padding="16" ColumnDefinitions="*,Auto">
+                        <Label Text="Version" Style="{StaticResource BodyMedium}" />
+                        <Label Grid.Column="1" Text="1.0.0 (Prototype)" 
+                               Style="{StaticResource BodyMedium}" 
+                               TextColor="{StaticResource TextSecondary}" />
+                    </Grid>
+                    
+                    <BoxView HeightRequest="1" Color="{StaticResource BorderLight}" Margin="16,0" />
+                    
+                    <Grid Padding="16" ColumnDefinitions="*,Auto">
+                        <Label Text="Build" Style="{StaticResource BodyMedium}" />
+                        <Label Grid.Column="1" Text="2024.12.13" 
+                               Style="{StaticResource BodyMedium}" 
+                               TextColor="{StaticResource TextSecondary}" />
+                    </Grid>
+                </VerticalStackLayout>
+            </controls:AppCard>
+            
+        </VerticalStackLayout>
+    </ScrollView>
+    
+</ContentPage>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IntegratorMobile.UI.Controls.AppInput"
+             x:Name="this">
+    
+    <VerticalStackLayout Spacing="6">
+        <!-- Label -->
+        <Label x:Name="LabelText"
+               Text="{Binding Source={x:Reference this}, Path=Label}"
+               FontFamily="InterMedium"
+               FontSize="14"
+               TextColor="#475569"
+               IsVisible="{Binding Source={x:Reference this}, Path=Label, Converter={StaticResource StringToBoolConverter}}" />
+        
+        <!-- Input Container -->
+        <Border x:Name="InputBorder"
+                BackgroundColor="White"
+                Stroke="#CBD5E1"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 8"
+                Padding="12,0"
+                MinimumHeightRequest="44">
+            
+            <Entry x:Name="InputEntry"
+                   Text="{Binding Source={x:Reference this}, Path=Text, Mode=TwoWay}"
+                   Placeholder="{Binding Source={x:Reference this}, Path=Placeholder}"
+                   IsPassword="{Binding Source={x:Reference this}, Path=IsPassword}"
+                   Keyboard="{Binding Source={x:Reference this}, Path=Keyboard}"
+                   ReturnType="{Binding Source={x:Reference this}, Path=ReturnType}"
+                   MaxLength="{Binding Source={x:Reference this}, Path=MaxLength}"
+                   FontFamily="InterRegular"
+                   FontSize="16"
+                   TextColor="#0F172A"
+                   PlaceholderColor="#94A3B8"
+                   VerticalOptions="Center"
+                   Focused="OnEntryFocused"
+                   Unfocused="OnEntryUnfocused"
+                   Completed="OnEntryCompleted" />
+        </Border>
+        
+        <!-- Error Message -->
+        <Label x:Name="ErrorLabel"
+               Text="{Binding Source={x:Reference this}, Path=ErrorMessage}"
+               FontFamily="InterRegular"
+               FontSize="12"
+               TextColor="#DC2626"
+               IsVisible="{Binding Source={x:Reference this}, Path=HasError}" />
+    </VerticalStackLayout>
+    
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <local:StringToBoolConverter x:Key="StringToBoolConverter" 
+                                         xmlns:local="clr-namespace:IntegratorMobile.UI.Converters" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+    
+</ContentView>

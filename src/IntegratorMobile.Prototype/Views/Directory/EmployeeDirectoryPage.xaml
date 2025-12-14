@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:IntegratorMobile.UI.Controls;assembly=IntegratorMobile.UI"
+             x:Class="IntegratorMobile.Views.Directory.EmployeeDirectoryPage"
+             Title="Employee Directory"
+             BackgroundColor="{StaticResource BackgroundSecondary}">
+    
+    <Grid RowDefinitions="Auto,Auto,*">
+        
+        <!-- Search Box -->
+        <Border Grid.Row="0" 
+                Margin="16,16,16,8"
+                BackgroundColor="White"
+                Stroke="{StaticResource BorderMedium}"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 8"
+                Padding="12,0">
+            <Grid ColumnDefinitions="Auto,*">
+                <Label Text="🔍" FontSize="18" VerticalOptions="Center" Margin="0,0,8,0" />
+                <Entry x:Name="SearchEntry"
+                       Grid.Column="1"
+                       Placeholder="Search employees..."
+                       FontFamily="InterRegular"
+                       FontSize="16"
+                       TextColor="{StaticResource TextPrimary}"
+                       PlaceholderColor="{StaticResource TextTertiary}"
+                       TextChanged="OnSearchTextChanged" />
+            </Grid>
+        </Border>
+        
+        <!-- Results Count -->
+        <Label x:Name="ResultsCount"
+               Grid.Row="1"
+               Text="5 employees found"
+               Style="{StaticResource Caption}"
+               Margin="20,0,16,8" />
+        
+        <!-- Employee List -->
+        <ScrollView Grid.Row="2">
+            <VerticalStackLayout x:Name="EmployeeList" Padding="16,0,16,16" Spacing="12">
+                
+                <!-- Employee Card 1 -->
+                <controls:AppCard>
+                    <Grid ColumnDefinitions="Auto,*">
+                        <Border WidthRequest="56" HeightRequest="56"
+                                BackgroundColor="{StaticResource Primary100}"
+                                StrokeThickness="2"
+                                Stroke="{StaticResource BorderLight}"
+                                StrokeShape="RoundRectangle 28">
+                            <Label Text="JS" FontSize="20" FontFamily="InterSemiBold"
+                                   TextColor="{StaticResource Primary600}"
+                                   HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Margin="16,0,0,0" VerticalOptions="Center" Spacing="2">
+                            <Label Text="Jane Smith"
+                                   Style="{StaticResource BodyLarge}"
+                                   FontFamily="InterSemiBold" />
+                            <Label Text="Field Technician"
+                                   Style="{StaticResource BodyMedium}"
+                                   TextColor="{StaticResource Primary600}" />
+                            <Label Text="Operations"
+                                   Style="{StaticResource Caption}" />
+                            <HorizontalStackLayout Spacing="16" Margin="0,8,0,0">
+                                <Label Text="📞" FontSize="16">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding CallCommand}" CommandParameter="5551234567" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                                <Label Text="✉️" FontSize="16">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding EmailCommand}" CommandParameter="jane.smith@crowther.net" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Grid>
+                </controls:AppCard>
+                
+                <!-- Employee Card 2 -->
+                <controls:AppCard>
+                    <Grid ColumnDefinitions="Auto,*">
+                        <Border WidthRequest="56" HeightRequest="56"
+                                BackgroundColor="{StaticResource Primary100}"
+                                StrokeThickness="2"
+                                Stroke="{StaticResource BorderLight}"
+                                StrokeShape="RoundRectangle 28">
+                            <Label Text="MJ" FontSize="20" FontFamily="InterSemiBold"
+                                   TextColor="{StaticResource Primary600}"
+                                   HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Margin="16,0,0,0" VerticalOptions="Center" Spacing="2">
+                            <Label Text="Michael Johnson"
+                                   Style="{StaticResource BodyLarge}"
+                                   FontFamily="InterSemiBold" />
+                            <Label Text="Senior Technician"
+                                   Style="{StaticResource BodyMedium}"
+                                   TextColor="{StaticResource Primary600}" />
+                            <Label Text="Operations"
+                                   Style="{StaticResource Caption}" />
+                            <HorizontalStackLayout Spacing="16" Margin="0,8,0,0">
+                                <Label Text="📞" FontSize="16" />
+                                <Label Text="✉️" FontSize="16" />
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Grid>
+                </controls:AppCard>
+                
+                <!-- Employee Card 3 -->
+                <controls:AppCard>
+                    <Grid ColumnDefinitions="Auto,*">
+                        <Border WidthRequest="56" HeightRequest="56"
+                                BackgroundColor="{StaticResource Primary100}"
+                                StrokeThickness="2"
+                                Stroke="{StaticResource BorderLight}"
+                                StrokeShape="RoundRectangle 28">
+                            <Label Text="SW" FontSize="20" FontFamily="InterSemiBold"
+                                   TextColor="{StaticResource Primary600}"
+                                   HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Margin="16,0,0,0" VerticalOptions="Center" Spacing="2">
+                            <Label Text="Sarah Williams"
+                                   Style="{StaticResource BodyLarge}"
+                                   FontFamily="InterSemiBold" />
+                            <Label Text="Dispatcher"
+                                   Style="{StaticResource BodyMedium}"
+                                   TextColor="{StaticResource Primary600}" />
+                            <Label Text="Scheduling"
+                                   Style="{StaticResource Caption}" />
+                            <HorizontalStackLayout Spacing="16" Margin="0,8,0,0">
+                                <Label Text="📞" FontSize="16" />
+                                <Label Text="✉️" FontSize="16" />
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Grid>
+                </controls:AppCard>
+                
+                <!-- Employee Card 4 -->
+                <controls:AppCard>
+                    <Grid ColumnDefinitions="Auto,*">
+                        <Border WidthRequest="56" HeightRequest="56"
+                                BackgroundColor="{StaticResource Primary100}"
+                                StrokeThickness="2"
+                                Stroke="{StaticResource BorderLight}"
+                                StrokeShape="RoundRectangle 28">
+                            <Label Text="DB" FontSize="20" FontFamily="InterSemiBold"
+                                   TextColor="{StaticResource Primary600}"
+                                   HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Margin="16,0,0,0" VerticalOptions="Center" Spacing="2">
+                            <Label Text="David Brown"
+                                   Style="{StaticResource BodyLarge}"
+                                   FontFamily="InterSemiBold" />
+                            <Label Text="Project Manager"
+                                   Style="{StaticResource BodyMedium}"
+                                   TextColor="{StaticResource Primary600}" />
+                            <Label Text="Management"
+                                   Style="{StaticResource Caption}" />
+                            <HorizontalStackLayout Spacing="16" Margin="0,8,0,0">
+                                <Label Text="📞" FontSize="16" />
+                                <Label Text="✉️" FontSize="16" />
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Grid>
+                </controls:AppCard>
+                
+                <!-- Employee Card 5 -->
+                <controls:AppCard>
+                    <Grid ColumnDefinitions="Auto,*">
+                        <Border WidthRequest="56" HeightRequest="56"
+                                BackgroundColor="{StaticResource Primary100}"
+                                StrokeThickness="2"
+                                Stroke="{StaticResource BorderLight}"
+                                StrokeShape="RoundRectangle 28">
+                            <Label Text="ED" FontSize="20" FontFamily="InterSemiBold"
+                                   TextColor="{StaticResource Primary600}"
+                                   HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Margin="16,0,0,0" VerticalOptions="Center" Spacing="2">
+                            <Label Text="Emily Davis"
+                                   Style="{StaticResource BodyLarge}"
+                                   FontFamily="InterSemiBold" />
+                            <Label Text="Office Administrator"
+                                   Style="{StaticResource BodyMedium}"
+                                   TextColor="{StaticResource Primary600}" />
+                            <Label Text="Admin"
+                                   Style="{StaticResource Caption}" />
+                            <HorizontalStackLayout Spacing="16" Margin="0,8,0,0">
+                                <Label Text="📞" FontSize="16" />
+                                <Label Text="✉️" FontSize="16" />
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Grid>
+                </controls:AppCard>
+                
+                <!-- Placeholder -->
+                <controls:AppCard>
+                    <Border BackgroundColor="{StaticResource BackgroundTertiary}"
+                            Stroke="{StaticResource BorderMedium}"
+                            StrokeThickness="2"
+                            StrokeDashArray="4,4"
+                            StrokeShape="RoundRectangle 8"
+                            Padding="24">
+                        <Label Text="Full directory features will be developed in Phase 2"
+                               Style="{StaticResource Caption}"
+                               HorizontalOptions="Center" />
+                    </Border>
+                </controls:AppCard>
+                
+            </VerticalStackLayout>
+        </ScrollView>
+        
+    </Grid>
+    
+</ContentPage>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:IntegratorMobile.UI.Controls;assembly=IntegratorMobile.UI"
+             x:Class="IntegratorMobile.Views.Appointments.ArrivalPhotosPage"
+             Title="Appointment Arrival"
+             BackgroundColor="{StaticResource BackgroundSecondary}">
+    
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="16">
+            
+            <!-- Instructions -->
+            <controls:AppCard>
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="📸  Arrival Photo Required"
+                           Style="{StaticResource HeadingSmall}" />
+                    <Label Text="Take your arrival photo and review scope of work to familiarize yourself with requirements."
+                           Style="{StaticResource BodyMedium}"
+                           TextColor="{StaticResource TextSecondary}" />
+                </VerticalStackLayout>
+            </controls:AppCard>
+            
+            <!-- Photo Capture Area -->
+            <controls:AppCard CardPadding="24">
+                <VerticalStackLayout Spacing="16" HorizontalOptions="Center">
+                    
+                    <!-- Photo Placeholder -->
+                    <Border x:Name="PhotoPlaceholder"
+                            WidthRequest="200"
+                            HeightRequest="200"
+                            BackgroundColor="{StaticResource BackgroundTertiary}"
+                            Stroke="{StaticResource BorderMedium}"
+                            StrokeThickness="2"
+                            StrokeDashArray="4,4"
+                            StrokeShape="RoundRectangle 12"
+                            HorizontalOptions="Center">
+                        <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="8">
+                            <Label Text="📷" FontSize="48" HorizontalOptions="Center" />
+                            <Label Text="No photo yet"
+                                   Style="{StaticResource Caption}"
+                                   HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                    </Border>
+                    
+                    <!-- Captured Photo (hidden initially) -->
+                    <Image x:Name="CapturedPhoto"
+                           WidthRequest="200"
+                           HeightRequest="200"
+                           Aspect="AspectFill"
+                           IsVisible="False" />
+                    
+                    <!-- Take Photo Button -->
+                    <controls:AppButton x:Name="TakePhotoButton"
+                                       Text="TAKE ARRIVAL PHOTO"
+                                       Variant="Primary"
+                                       Clicked="OnTakePhotoClicked" />
+                    
+                    <!-- Take Another Button (hidden initially) -->
+                    <controls:AppButton x:Name="TakeAnotherButton"
+                                       Text="TAKE ANOTHER PHOTO"
+                                       Variant="Outline"
+                                       IsVisible="False"
+                                       Clicked="OnTakePhotoClicked" />
+                </VerticalStackLayout>
+            </controls:AppCard>
+            
+            <!-- Photo Thumbnails -->
+            <Label x:Name="PhotoCountLabel"
+                   Text="0 photos captured"
+                   Style="{StaticResource Caption}"
+                   HorizontalOptions="Center"
+                   IsVisible="False" />
+            
+            <!-- Complete Arrival Button -->
+            <controls:AppButton x:Name="CompleteButton"
+                               Text="COMPLETE ARRIVAL"
+                               Variant="Success"
+                               IsBlock="True"
+                               IsEnabled="False"
+                               Clicked="OnCompleteClicked" />
+            
+            <Label Text="At least one arrival photo is required to proceed."
+                   Style="{StaticResource Caption}"
+                   HorizontalTextAlignment="Center" />
+            
+        </VerticalStackLayout>
+    </ScrollView>
+    
+</ContentPage>

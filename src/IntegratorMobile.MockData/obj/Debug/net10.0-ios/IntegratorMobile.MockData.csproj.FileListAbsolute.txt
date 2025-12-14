@@ -1,0 +1,12 @@
+/Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.MockData/bin/Debug/net10.0-ios/IntegratorMobile.MockData.dll
+/Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.MockData/bin/Debug/net10.0-ios/IntegratorMobile.MockData.pdb
+/Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.MockData/obj/Debug/net10.0-ios/_ProcessedBundleResourcesPath.items
+/Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.MockData/obj/Debug/net10.0-ios/_ProcessedContentPath.items
+/Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.MockData/obj/Debug/net10.0-ios/IntegratorMobile.MockData.GeneratedMSBuildEditorConfig.editorconfig
+/Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.MockData/obj/Debug/net10.0-ios/IntegratorMobile.MockData.AssemblyInfoInputs.cache
+/Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.MockData/obj/Debug/net10.0-ios/IntegratorMobile.MockData.AssemblyInfo.cs
+/Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.MockData/obj/Debug/net10.0-ios/IntegratorMobile.MockData.csproj.CoreCompileInputs.cache
+/Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.MockData/obj/Debug/net10.0-ios/IntegratorMobile.MockData.dll
+/Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.MockData/obj/Debug/net10.0-ios/refint/IntegratorMobile.MockData.dll
+/Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.MockData/obj/Debug/net10.0-ios/IntegratorMobile.MockData.pdb
+/Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.MockData/obj/Debug/net10.0-ios/ref/IntegratorMobile.MockData.dll

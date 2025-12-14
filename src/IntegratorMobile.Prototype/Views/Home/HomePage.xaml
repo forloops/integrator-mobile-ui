@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IntegratorMobile.Views.Home.HomePage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#F8FAFC">
+    
+    <VerticalStackLayout>
+        
+        <!-- Custom Header -->
+        <Grid BackgroundColor="#323F4B" 
+              Padding="12"
+              HeightRequest="56"
+              ColumnDefinitions="Auto,*">
+            <Button Text="☰"
+                    FontSize="24"
+                    TextColor="White"
+                    BackgroundColor="Transparent"
+                    Clicked="OnMenuClicked"
+                    WidthRequest="44"
+                    HeightRequest="44"
+                    VerticalOptions="Center" />
+            <Label Grid.Column="1" 
+                   Text="Home"
+                   TextColor="White"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   VerticalOptions="Center"
+                   Margin="8,0,0,0" />
+        </Grid>
+        
+        <!-- Main Content -->
+        <ScrollView VerticalOptions="FillAndExpand">
+            <VerticalStackLayout Padding="16" Spacing="16">
+                
+                <!-- Welcome Section -->
+                <VerticalStackLayout Spacing="4" Margin="0,8,0,8">
+                    <Label Text="Welcome, John Smith!"
+                           FontSize="24"
+                           FontAttributes="Bold"
+                           TextColor="#1E293B"
+                           HorizontalOptions="Center" />
+                    <Label Text="Crowther Roofing"
+                           FontSize="14"
+                           TextColor="#64748B"
+                           HorizontalOptions="Center" />
+                </VerticalStackLayout>
+                
+                <!-- Stats - 2x2 using FlexLayout -->
+                <FlexLayout Wrap="Wrap" 
+                            JustifyContent="Center" 
+                            AlignContent="Start"
+                            HorizontalOptions="Center">
+                    
+                    <!-- Today's Appointments -->
+                    <Border BackgroundColor="White"
+                            Stroke="#E2E8F0"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 12"
+                            Padding="12"
+                            Margin="6"
+                            WidthRequest="160"
+                            HeightRequest="75">
+                        <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                            <Border WidthRequest="40" HeightRequest="40"
+                                    BackgroundColor="#F1F5F9"
+                                    StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 8">
+                                <Label Text="📅" FontSize="18" 
+                                       HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Border>
+                            <VerticalStackLayout VerticalOptions="Center">
+                                <Label Text="3"
+                                       FontSize="22"
+                                       FontAttributes="Bold"
+                                       TextColor="#3B82F6" />
+                                <Label Text="Today's Appts"
+                                       FontSize="10"
+                                       TextColor="#64748B" />
+                            </VerticalStackLayout>
+                        </HorizontalStackLayout>
+                    </Border>
+                    
+                    <!-- Open Jobs -->
+                    <Border BackgroundColor="White"
+                            Stroke="#E2E8F0"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 12"
+                            Padding="12"
+                            Margin="6"
+                            WidthRequest="160"
+                            HeightRequest="75">
+                        <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                            <Border WidthRequest="40" HeightRequest="40"
+                                    BackgroundColor="#F1F5F9"
+                                    StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 8">
+                                <Label Text="💼" FontSize="18" 
+                                       HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Border>
+                            <VerticalStackLayout VerticalOptions="Center">
+                                <Label Text="12"
+                                       FontSize="22"
+                                       FontAttributes="Bold"
+                                       TextColor="#F97316" />
+                                <Label Text="Open Jobs"
+                                       FontSize="10"
+                                       TextColor="#64748B" />
+                            </VerticalStackLayout>
+                        </HorizontalStackLayout>
+                    </Border>
+                    
+                    <!-- Pending Tasks -->
+                    <Border BackgroundColor="White"
+                            Stroke="#E2E8F0"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 12"
+                            Padding="12"
+                            Margin="6"
+                            WidthRequest="160"
+                            HeightRequest="75">
+                        <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                            <Border WidthRequest="40" HeightRequest="40"
+                                    BackgroundColor="#F1F5F9"
+                                    StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 8">
+                                <Label Text="⏰" FontSize="18" 
+                                       HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Border>
+                            <VerticalStackLayout VerticalOptions="Center">
+                                <Label Text="5"
+                                       FontSize="22"
+                                       FontAttributes="Bold"
+                                       TextColor="#EAB308" />
+                                <Label Text="Pending Tasks"
+                                       FontSize="10"
+                                       TextColor="#64748B" />
+                            </VerticalStackLayout>
+                        </HorizontalStackLayout>
+                    </Border>
+                    
+                    <!-- Completed Today -->
+                    <Border BackgroundColor="White"
+                            Stroke="#E2E8F0"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 12"
+                            Padding="12"
+                            Margin="6"
+                            WidthRequest="160"
+                            HeightRequest="75">
+                        <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                            <Border WidthRequest="40" HeightRequest="40"
+                                    BackgroundColor="#F1F5F9"
+                                    StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 8">
+                                <Label Text="✅" FontSize="18" 
+                                       HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Border>
+                            <VerticalStackLayout VerticalOptions="Center">
+                                <Label Text="8"
+                                       FontSize="22"
+                                       FontAttributes="Bold"
+                                       TextColor="#22C55E" />
+                                <Label Text="Completed"
+                                       FontSize="10"
+                                       TextColor="#64748B" />
+                            </VerticalStackLayout>
+                        </HorizontalStackLayout>
+                    </Border>
+                    
+                </FlexLayout>
+                
+                <!-- Quick Actions Card -->
+                <Border BackgroundColor="White"
+                        Stroke="#E2E8F0"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 12"
+                        Padding="16"
+                        Margin="0,8,0,0">
+                    <VerticalStackLayout Spacing="16">
+                        <Label Text="Quick Actions"
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               TextColor="#1E293B" />
+                        
+                        <!-- Quick Action Buttons -->
+                        <FlexLayout JustifyContent="SpaceEvenly">
+                            
+                            <!-- Appointments -->
+                            <VerticalStackLayout Spacing="8">
+                                <VerticalStackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnAppointmentsTapped" />
+                                </VerticalStackLayout.GestureRecognizers>
+                                <Border WidthRequest="52" HeightRequest="52"
+                                        BackgroundColor="#FEF3C7"
+                                        StrokeThickness="0"
+                                        StrokeShape="RoundRectangle 26"
+                                        HorizontalOptions="Center">
+                                    <Label Text="📅" FontSize="22" 
+                                           HorizontalOptions="Center" VerticalOptions="Center" />
+                                </Border>
+                                <Label Text="Appointments"
+                                       FontSize="11"
+                                       TextColor="#1E293B"
+                                       HorizontalOptions="Center" />
+                            </VerticalStackLayout>
+                            
+                            <!-- Jobs -->
+                            <VerticalStackLayout Spacing="8">
+                                <Border WidthRequest="52" HeightRequest="52"
+                                        BackgroundColor="#FEF3C7"
+                                        StrokeThickness="0"
+                                        StrokeShape="RoundRectangle 26"
+                                        HorizontalOptions="Center">
+                                    <Label Text="💼" FontSize="22" 
+                                           HorizontalOptions="Center" VerticalOptions="Center" />
+                                </Border>
+                                <Label Text="Jobs"
+                                       FontSize="11"
+                                       TextColor="#1E293B"
+                                       HorizontalOptions="Center" />
+                            </VerticalStackLayout>
+                            
+                            <!-- Directory -->
+                            <VerticalStackLayout Spacing="8">
+                                <Border WidthRequest="52" HeightRequest="52"
+                                        BackgroundColor="#FEF3C7"
+                                        StrokeThickness="0"
+                                        StrokeShape="RoundRectangle 26"
+                                        HorizontalOptions="Center">
+                                    <Label Text="👥" FontSize="22" 
+                                           HorizontalOptions="Center" VerticalOptions="Center" />
+                                </Border>
+                                <Label Text="Directory"
+                                       FontSize="11"
+                                       TextColor="#1E293B"
+                                       HorizontalOptions="Center" />
+                            </VerticalStackLayout>
+                        </FlexLayout>
+                    </VerticalStackLayout>
+                </Border>
+                
+                <!-- Placeholder Card -->
+                <Border BackgroundColor="#F8FAFC"
+                        Stroke="#CBD5E1"
+                        StrokeThickness="2"
+                        StrokeShape="RoundRectangle 12"
+                        StrokeDashArray="6,4"
+                        Padding="24"
+                        Margin="0,8,0,16">
+                    <Label Text="Home page content will be developed in Phase 2"
+                           FontSize="12"
+                           TextColor="#94A3B8"
+                           HorizontalOptions="Center"
+                           HorizontalTextAlignment="Center" />
+                </Border>
+                
+            </VerticalStackLayout>
+        </ScrollView>
+        
+    </VerticalStackLayout>
+    
+</ContentPage>

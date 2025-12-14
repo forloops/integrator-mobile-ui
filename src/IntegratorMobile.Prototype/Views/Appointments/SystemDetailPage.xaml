@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:IntegratorMobile.UI.Controls;assembly=IntegratorMobile.UI"
+             x:Class="IntegratorMobile.Views.Appointments.SystemDetailPage"
+             Title="Survey Buildings &amp; Systems"
+             BackgroundColor="{StaticResource BackgroundSecondary}">
+    
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="16">
+            
+            <!-- Instructions -->
+            <controls:AppCard>
+                <HorizontalStackLayout Spacing="12">
+                    <Label Text="🏢" FontSize="24" VerticalOptions="Center" />
+                    <VerticalStackLayout VerticalOptions="Center">
+                        <Label Text="Select a building to begin"
+                               Style="{StaticResource BodyLarge}"
+                               FontFamily="InterSemiBold" />
+                        <Label Text="Take photos, videos and notes to document buildings &amp; systems."
+                               Style="{StaticResource BodySmall}"
+                               TextColor="{StaticResource TextSecondary}" />
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </controls:AppCard>
+            
+            <!-- Buildings List -->
+            <Label Text="BUILDINGS" Style="{StaticResource Caption}" Margin="4,8,0,0" />
+            
+            <controls:AppCard CardPadding="0">
+                <VerticalStackLayout>
+                    
+                    <!-- Building A -->
+                    <Grid Padding="16" ColumnDefinitions="Auto,*,Auto">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnBuildingATapped" />
+                        </Grid.GestureRecognizers>
+                        <Border WidthRequest="48" HeightRequest="48"
+                                BackgroundColor="{StaticResource Primary50}"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 8">
+                            <Label Text="🏢" FontSize="24" 
+                                   HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Margin="12,0" VerticalOptions="Center">
+                            <Label Text="Building A" 
+                                   Style="{StaticResource BodyLarge}" 
+                                   FontFamily="InterSemiBold" />
+                            <Label Text="Main residential building - 24 units" 
+                                   Style="{StaticResource Caption}" />
+                            <HorizontalStackLayout Spacing="8" Margin="0,4,0,0">
+                                <controls:AppBadge Text="3 systems" BadgeType="Info" />
+                                <controls:AppBadge Text="2 work items" BadgeType="Default" />
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                        <Label Grid.Column="2" Text="›" FontSize="24" 
+                               TextColor="{StaticResource TextTertiary}" VerticalOptions="Center" />
+                    </Grid>
+                    
+                    <BoxView HeightRequest="1" Color="{StaticResource BorderLight}" Margin="16,0" />
+                    
+                    <!-- Building B -->
+                    <Grid Padding="16" ColumnDefinitions="Auto,*,Auto">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnBuildingBTapped" />
+                        </Grid.GestureRecognizers>
+                        <Border WidthRequest="48" HeightRequest="48"
+                                BackgroundColor="{StaticResource Primary50}"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 8">
+                            <Label Text="🏢" FontSize="24" 
+                                   HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Margin="12,0" VerticalOptions="Center">
+                            <Label Text="Building B" 
+                                   Style="{StaticResource BodyLarge}" 
+                                   FontFamily="InterSemiBold" />
+                            <Label Text="Secondary residential building - 18 units" 
+                                   Style="{StaticResource Caption}" />
+                            <HorizontalStackLayout Spacing="8" Margin="0,4,0,0">
+                                <controls:AppBadge Text="1 system" BadgeType="Info" />
+                                <controls:AppBadge Text="1 work item" BadgeType="Default" />
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                        <Label Grid.Column="2" Text="›" FontSize="24" 
+                               TextColor="{StaticResource TextTertiary}" VerticalOptions="Center" />
+                    </Grid>
+                    
+                </VerticalStackLayout>
+            </controls:AppCard>
+            
+            <!-- Systems in Building A (Expandable) -->
+            <Label Text="SYSTEMS IN BUILDING A" Style="{StaticResource Caption}" Margin="4,16,0,0" />
+            
+            <controls:AppCard CardPadding="0">
+                <VerticalStackLayout>
+                    
+                    <!-- HVAC Unit 1 -->
+                    <Grid Padding="16" ColumnDefinitions="Auto,*,Auto">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnSystemTapped" />
+                        </Grid.GestureRecognizers>
+                        <Border WidthRequest="40" HeightRequest="40"
+                                BackgroundColor="{StaticResource InfoLight}"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 8">
+                            <Label Text="❄️" FontSize="18" 
+                                   HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Margin="12,0" VerticalOptions="Center">
+                            <Label Text="HVAC Unit 1" 
+                                   Style="{StaticResource BodyMedium}" 
+                                   FontFamily="InterSemiBold" />
+                            <Label Text="Carrier 24ACC636A003" 
+                                   Style="{StaticResource Caption}" />
+                        </VerticalStackLayout>
+                        <controls:AppBadge Grid.Column="2" Text="2 items" BadgeType="Info" />
+                    </Grid>
+                    
+                    <BoxView HeightRequest="1" Color="{StaticResource BorderLight}" Margin="16,0" />
+                    
+                    <!-- HVAC Unit 2 -->
+                    <Grid Padding="16" ColumnDefinitions="Auto,*,Auto">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnSystemTapped" />
+                        </Grid.GestureRecognizers>
+                        <Border WidthRequest="40" HeightRequest="40"
+                                BackgroundColor="{StaticResource InfoLight}"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 8">
+                            <Label Text="❄️" FontSize="18" 
+                                   HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Margin="12,0" VerticalOptions="Center">
+                            <Label Text="HVAC Unit 2" 
+                                   Style="{StaticResource BodyMedium}" 
+                                   FontFamily="InterSemiBold" />
+                            <Label Text="Carrier 24ACC636A003" 
+                                   Style="{StaticResource Caption}" />
+                        </VerticalStackLayout>
+                        <controls:AppBadge Grid.Column="2" Text="1 item" BadgeType="Info" />
+                    </Grid>
+                    
+                    <BoxView HeightRequest="1" Color="{StaticResource BorderLight}" Margin="16,0" />
+                    
+                    <!-- Electrical Panel -->
+                    <Grid Padding="16" ColumnDefinitions="Auto,*,Auto">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnSystemTapped" />
+                        </Grid.GestureRecognizers>
+                        <Border WidthRequest="40" HeightRequest="40"
+                                BackgroundColor="{StaticResource WarningLight}"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 8">
+                            <Label Text="⚡" FontSize="18" 
+                                   HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Margin="12,0" VerticalOptions="Center">
+                            <Label Text="Main Electrical Panel" 
+                                   Style="{StaticResource BodyMedium}" 
+                                   FontFamily="InterSemiBold" />
+                            <Label Text="Square D QO130L200PG" 
+                                   Style="{StaticResource Caption}" />
+                        </VerticalStackLayout>
+                        <controls:AppBadge Grid.Column="2" Text="0 items" BadgeType="Default" />
+                    </Grid>
+                    
+                </VerticalStackLayout>
+            </controls:AppCard>
+            
+            <!-- Add Work Item Button -->
+            <controls:AppButton Text="+ ADD WORK ITEM"
+                               Variant="Outline"
+                               IsBlock="True"
+                               Clicked="OnAddWorkItemClicked" />
+            
+            <!-- Complete Survey Button -->
+            <controls:AppButton Text="COMPLETE SURVEY"
+                               Variant="Success"
+                               IsBlock="True"
+                               Clicked="OnCompleteSurveyClicked" />
+            
+        </VerticalStackLayout>
+    </ScrollView>
+    
+</ContentPage>

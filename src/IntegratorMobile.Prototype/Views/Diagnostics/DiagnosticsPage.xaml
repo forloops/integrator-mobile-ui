@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:IntegratorMobile.UI.Controls;assembly=IntegratorMobile.UI"
+             x:Class="IntegratorMobile.Views.Diagnostics.DiagnosticsPage"
+             Title="Diagnostics"
+             BackgroundColor="{StaticResource BackgroundSecondary}">
+    
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="16">
+            
+            <!-- Connection Status Card -->
+            <controls:AppCard>
+                <VerticalStackLayout Spacing="16">
+                    <Label Text="Connection Status"
+                           Style="{StaticResource HeadingSmall}" />
+                    
+                    <!-- Network Connection -->
+                    <Grid ColumnDefinitions="Auto,*,Auto">
+                        <Border WidthRequest="40" HeightRequest="40"
+                                BackgroundColor="{StaticResource BackgroundTertiary}"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 8">
+                            <Label Text="📶" FontSize="18" 
+                                   HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Margin="12,0,0,0" VerticalOptions="Center">
+                            <Label Text="Network Connection"
+                                   Style="{StaticResource Caption}" />
+                            <Label Text="Online (WiFi)"
+                                   Style="{StaticResource BodyMedium}"
+                                   FontFamily="InterSemiBold" />
+                        </VerticalStackLayout>
+                        <Label Grid.Column="2" Text="✓" FontSize="18" 
+                               TextColor="{StaticResource Success}" VerticalOptions="Center" />
+                    </Grid>
+                    
+                    <!-- API Server -->
+                    <Grid ColumnDefinitions="Auto,*,Auto">
+                        <Border WidthRequest="40" HeightRequest="40"
+                                BackgroundColor="{StaticResource BackgroundTertiary}"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 8">
+                            <Label Text="🖥️" FontSize="18" 
+                                   HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Margin="12,0,0,0" VerticalOptions="Center">
+                            <Label Text="API Server"
+                                   Style="{StaticResource Caption}" />
+                            <Label Text="api.integrator.com"
+                                   Style="{StaticResource BodyMedium}"
+                                   FontFamily="InterSemiBold" />
+                        </VerticalStackLayout>
+                        <Label Grid.Column="2" Text="✓" FontSize="18" 
+                               TextColor="{StaticResource Success}" VerticalOptions="Center" />
+                    </Grid>
+                    
+                    <!-- Device ID -->
+                    <Grid ColumnDefinitions="Auto,*,Auto">
+                        <Border WidthRequest="40" HeightRequest="40"
+                                BackgroundColor="{StaticResource BackgroundTertiary}"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 8">
+                            <Label Text="📱" FontSize="18" 
+                                   HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Margin="12,0,0,0" VerticalOptions="Center">
+                            <Label Text="Device ID"
+                                   Style="{StaticResource Caption}" />
+                            <Label Text="DEV-2024-ABCD-1234"
+                                   Style="{StaticResource BodyMedium}"
+                                   FontFamily="InterSemiBold" />
+                        </VerticalStackLayout>
+                        <Label Grid.Column="2" Text="ℹ️" FontSize="18" 
+                               TextColor="{StaticResource TextTertiary}" VerticalOptions="Center" />
+                    </Grid>
+                    
+                    <!-- Last Sync -->
+                    <Grid ColumnDefinitions="Auto,*,Auto">
+                        <Border WidthRequest="40" HeightRequest="40"
+                                BackgroundColor="{StaticResource BackgroundTertiary}"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 8">
+                            <Label Text="🕐" FontSize="18" 
+                                   HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Margin="12,0,0,0" VerticalOptions="Center">
+                            <Label Text="Last Sync"
+                                   Style="{StaticResource Caption}" />
+                            <Label Text="2 minutes ago"
+                                   Style="{StaticResource BodyMedium}"
+                                   FontFamily="InterSemiBold" />
+                        </VerticalStackLayout>
+                        <Label Grid.Column="2" Text="ℹ️" FontSize="18" 
+                               TextColor="{StaticResource TextTertiary}" VerticalOptions="Center" />
+                    </Grid>
+                    
+                </VerticalStackLayout>
+            </controls:AppCard>
+            
+            <!-- System Information Card -->
+            <controls:AppCard>
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="System Information"
+                           Style="{StaticResource HeadingSmall}" />
+                    
+                    <Grid RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="*,Auto" RowSpacing="12">
+                        
+                        <Label Grid.Row="0" Grid.Column="0" Text="App Version" 
+                               Style="{StaticResource BodyMedium}" TextColor="{StaticResource TextSecondary}" />
+                        <Label Grid.Row="0" Grid.Column="1" Text="3.0.0" 
+                               Style="{StaticResource BodyMedium}" FontFamily="InterMedium" />
+                        
+                        <BoxView Grid.Row="0" Grid.ColumnSpan="2" HeightRequest="1" 
+                                 Color="{StaticResource BorderLight}" VerticalOptions="End" />
+                        
+                        <Label Grid.Row="1" Grid.Column="0" Text="Build Number" 
+                               Style="{StaticResource BodyMedium}" TextColor="{StaticResource TextSecondary}" />
+                        <Label Grid.Row="1" Grid.Column="1" Text="2024.12.13.001" 
+                               Style="{StaticResource BodyMedium}" FontFamily="InterMedium" />
+                        
+                        <BoxView Grid.Row="1" Grid.ColumnSpan="2" HeightRequest="1" 
+                                 Color="{StaticResource BorderLight}" VerticalOptions="End" />
+                        
+                        <Label Grid.Row="2" Grid.Column="0" Text="Platform" 
+                               Style="{StaticResource BodyMedium}" TextColor="{StaticResource TextSecondary}" />
+                        <Label Grid.Row="2" Grid.Column="1" Text="iOS 17.2" 
+                               Style="{StaticResource BodyMedium}" FontFamily="InterMedium" />
+                        
+                        <BoxView Grid.Row="2" Grid.ColumnSpan="2" HeightRequest="1" 
+                                 Color="{StaticResource BorderLight}" VerticalOptions="End" />
+                        
+                        <Label Grid.Row="3" Grid.Column="0" Text="Device" 
+                               Style="{StaticResource BodyMedium}" TextColor="{StaticResource TextSecondary}" />
+                        <Label Grid.Row="3" Grid.Column="1" Text="iPhone 15 Pro" 
+                               Style="{StaticResource BodyMedium}" FontFamily="InterMedium" />
+                        
+                    </Grid>
+                </VerticalStackLayout>
+            </controls:AppCard>
+            
+            <!-- Actions -->
+            <VerticalStackLayout Spacing="12">
+                <controls:AppButton Text="Run Diagnostics"
+                                   Variant="Outline"
+                                   IsBlock="True" />
+                <controls:AppButton Text="Export Logs"
+                                   Variant="Outline"
+                                   IsBlock="True" />
+                <controls:AppButton Text="Send Report to Support"
+                                   Variant="Outline"
+                                   IsBlock="True" />
+            </VerticalStackLayout>
+            
+            <!-- Placeholder -->
+            <controls:AppCard>
+                <Border BackgroundColor="{StaticResource BackgroundTertiary}"
+                        Stroke="{StaticResource BorderMedium}"
+                        StrokeThickness="2"
+                        StrokeDashArray="4,4"
+                        StrokeShape="RoundRectangle 8"
+                        Padding="24">
+                    <Label Text="Full diagnostics will be developed in Phase 2"
+                           Style="{StaticResource Caption}"
+                           HorizontalOptions="Center" />
+                </Border>
+            </controls:AppCard>
+            
+        </VerticalStackLayout>
+    </ScrollView>
+    
+</ContentPage>

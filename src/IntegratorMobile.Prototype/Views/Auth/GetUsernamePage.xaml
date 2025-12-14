@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:IntegratorMobile.UI.Controls;assembly=IntegratorMobile.UI"
+             x:Class="IntegratorMobile.Views.Auth.GetUsernamePage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{StaticResource BackgroundSecondary}">
+    
+    <ScrollView>
+        <VerticalStackLayout Padding="24"
+                             Spacing="24"
+                             VerticalOptions="Center">
+            
+            <!-- Back Button -->
+            <HorizontalStackLayout>
+                <Button Text="‹ Back"
+                        TextColor="{StaticResource TextPrimary}"
+                        BackgroundColor="Transparent"
+                        FontFamily="InterSemiBold"
+                        Clicked="OnBackClicked" />
+            </HorizontalStackLayout>
+            
+            <!-- Header -->
+            <VerticalStackLayout Spacing="8" HorizontalOptions="Center">
+                <Label Text="Forgot your Username?"
+                       Style="{StaticResource HeadingLarge}"
+                       HorizontalOptions="Center" />
+                <Label Text="Please enter the phone number of this device."
+                       Style="{StaticResource BodyMedium}"
+                       TextColor="{StaticResource TextSecondary}"
+                       HorizontalTextAlignment="Center" />
+            </VerticalStackLayout>
+            
+            <!-- Card -->
+            <controls:AppCard CardPadding="24">
+                <VerticalStackLayout Spacing="20">
+                    
+                    <!-- Alert (shown when result is available) -->
+                    <Border x:Name="AlertBox"
+                            IsVisible="False"
+                            BackgroundColor="{StaticResource SuccessLight}"
+                            Stroke="Transparent"
+                            StrokeShape="RoundRectangle 8"
+                            Padding="16">
+                        <VerticalStackLayout Spacing="4">
+                            <Label x:Name="AlertTitle"
+                                   FontFamily="InterSemiBold"
+                                   FontSize="14" />
+                            <Label x:Name="AlertMessage"
+                                   FontFamily="InterRegular"
+                                   FontSize="14" />
+                        </VerticalStackLayout>
+                    </Border>
+                    
+                    <!-- Phone Number Input -->
+                    <controls:AppInput x:Name="PhoneInput"
+                                      Label="Phone Number"
+                                      Placeholder="(555) 123-4567"
+                                      Keyboard="Telephone"
+                                      ReturnType="Next" />
+                    
+                    <!-- Confirm Phone Number Input -->
+                    <controls:AppInput x:Name="ConfirmPhoneInput"
+                                      Label="Confirm Phone Number"
+                                      Placeholder="(555) 123-4567"
+                                      Keyboard="Telephone"
+                                      ReturnType="Go"
+                                      Completed="OnConfirmPhoneCompleted" />
+                    
+                    <!-- Get Username Button -->
+                    <controls:AppButton x:Name="GetUsernameButton"
+                                       Text="GET MY USERNAME"
+                                       Variant="Primary"
+                                       IsBlock="True"
+                                       Clicked="OnGetUsernameClicked" />
+                    
+                </VerticalStackLayout>
+            </controls:AppCard>
+            
+        </VerticalStackLayout>
+    </ScrollView>
+    
+</ContentPage>

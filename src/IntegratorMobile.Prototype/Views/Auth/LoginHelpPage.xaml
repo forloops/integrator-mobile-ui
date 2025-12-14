@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:IntegratorMobile.UI.Controls;assembly=IntegratorMobile.UI"
+             x:Class="IntegratorMobile.Views.Auth.LoginHelpPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{StaticResource BackgroundSecondary}">
+    
+    <ScrollView>
+        <VerticalStackLayout Padding="24"
+                             Spacing="24"
+                             VerticalOptions="Start">
+            
+            <!-- Back Button -->
+            <HorizontalStackLayout>
+                <Button Text="‹ Back"
+                        TextColor="{StaticResource TextPrimary}"
+                        BackgroundColor="Transparent"
+                        FontFamily="InterSemiBold"
+                        Clicked="OnBackClicked" />
+            </HorizontalStackLayout>
+            
+            <!-- Header -->
+            <VerticalStackLayout Spacing="8" HorizontalOptions="Center">
+                <Label Text="Login Help"
+                       Style="{StaticResource HeadingLarge}"
+                       HorizontalOptions="Center" />
+                <Label Text="Please choose one of the help topics below"
+                       Style="{StaticResource BodyMedium}"
+                       TextColor="{StaticResource TextSecondary}"
+                       HorizontalTextAlignment="Center" />
+            </VerticalStackLayout>
+            
+            <!-- Help Options Card -->
+            <controls:AppCard CardPadding="0">
+                <VerticalStackLayout>
+                    
+                    <!-- Setup Account -->
+                    <Grid Padding="16" ColumnDefinitions="Auto,*,Auto">
+                        <Border WidthRequest="40" HeightRequest="40"
+                                BackgroundColor="{StaticResource Primary100}"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 8">
+                            <Label Text="📱" FontSize="20" 
+                                   HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Margin="12,0,0,0" VerticalOptions="Center">
+                            <Label Text="Setup Account"
+                                   Style="{StaticResource BodyLarge}"
+                                   FontFamily="InterSemiBold" />
+                            <Label Text="Need to setup an account or have never logged in before?"
+                                   Style="{StaticResource Caption}" />
+                        </VerticalStackLayout>
+                        <Label Grid.Column="2" Text="›" FontSize="24" 
+                               TextColor="{StaticResource TextTertiary}" VerticalOptions="Center" />
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnSetupAccountClicked" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                    
+                    <BoxView HeightRequest="1" Color="{StaticResource BorderLight}" Margin="16,0" />
+                    
+                    <!-- Forgot Password -->
+                    <Grid Padding="16" ColumnDefinitions="Auto,*,Auto">
+                        <Border WidthRequest="40" HeightRequest="40"
+                                BackgroundColor="{StaticResource Primary100}"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 8">
+                            <Label Text="🔑" FontSize="20" 
+                                   HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Margin="12,0,0,0" VerticalOptions="Center">
+                            <Label Text="Forgot Password"
+                                   Style="{StaticResource BodyLarge}"
+                                   FontFamily="InterSemiBold" />
+                            <Label Text="Request a link to reset your password."
+                                   Style="{StaticResource Caption}" />
+                        </VerticalStackLayout>
+                        <Label Grid.Column="2" Text="›" FontSize="24" 
+                               TextColor="{StaticResource TextTertiary}" VerticalOptions="Center" />
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnForgotPasswordClicked" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                    
+                    <BoxView HeightRequest="1" Color="{StaticResource BorderLight}" Margin="16,0" />
+                    
+                    <!-- Reset Password -->
+                    <Grid Padding="16" ColumnDefinitions="Auto,*,Auto">
+                        <Border WidthRequest="40" HeightRequest="40"
+                                BackgroundColor="{StaticResource Primary100}"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 8">
+                            <Label Text="🔒" FontSize="20" 
+                                   HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Margin="12,0,0,0" VerticalOptions="Center">
+                            <Label Text="Reset Password"
+                                   Style="{StaticResource BodyLarge}"
+                                   FontFamily="InterSemiBold" />
+                            <Label Text="Already have a code? Enter the code that was texted to you."
+                                   Style="{StaticResource Caption}" />
+                        </VerticalStackLayout>
+                        <Label Grid.Column="2" Text="›" FontSize="24" 
+                               TextColor="{StaticResource TextTertiary}" VerticalOptions="Center" />
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnResetPasswordClicked" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                    
+                    <BoxView HeightRequest="1" Color="{StaticResource BorderLight}" Margin="16,0" />
+                    
+                    <!-- Forgot Username -->
+                    <Grid Padding="16" ColumnDefinitions="Auto,*,Auto">
+                        <Border WidthRequest="40" HeightRequest="40"
+                                BackgroundColor="{StaticResource Primary100}"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 8">
+                            <Label Text="👤" FontSize="20" 
+                                   HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Margin="12,0,0,0" VerticalOptions="Center">
+                            <Label Text="Forgot Username"
+                                   Style="{StaticResource BodyLarge}"
+                                   FontFamily="InterSemiBold" />
+                            <Label Text="Request a text message to receive your username."
+                                   Style="{StaticResource Caption}" />
+                        </VerticalStackLayout>
+                        <Label Grid.Column="2" Text="›" FontSize="24" 
+                               TextColor="{StaticResource TextTertiary}" VerticalOptions="Center" />
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnForgotUsernameClicked" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                    
+                </VerticalStackLayout>
+            </controls:AppCard>
+            
+        </VerticalStackLayout>
+    </ScrollView>
+    
+</ContentPage>

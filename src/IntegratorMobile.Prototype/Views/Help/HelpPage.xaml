@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:IntegratorMobile.UI.Controls;assembly=IntegratorMobile.UI"
+             x:Class="IntegratorMobile.Views.Help.HelpPage"
+             Title="Help"
+             BackgroundColor="{StaticResource BackgroundSecondary}">
+    
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="16">
+            
+            <!-- Header -->
+            <VerticalStackLayout HorizontalOptions="Center" Spacing="12" Padding="0,16">
+                <Border WidthRequest="64" HeightRequest="64"
+                        BackgroundColor="{StaticResource Primary100}"
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 32"
+                        HorizontalOptions="Center">
+                    <Label Text="❓" FontSize="32" 
+                           HorizontalOptions="Center" VerticalOptions="Center" />
+                </Border>
+                <Label Text="How can we help?"
+                       Style="{StaticResource HeadingMedium}"
+                       HorizontalOptions="Center" />
+                <Label Text="Choose a topic below to get started"
+                       Style="{StaticResource BodyMedium}"
+                       TextColor="{StaticResource TextSecondary}"
+                       HorizontalOptions="Center" />
+            </VerticalStackLayout>
+            
+            <!-- Help Options Card -->
+            <controls:AppCard CardPadding="0">
+                <VerticalStackLayout>
+                    
+                    <!-- User Guide -->
+                    <Grid Padding="16" ColumnDefinitions="Auto,*,Auto">
+                        <Border WidthRequest="40" HeightRequest="40"
+                                BackgroundColor="{StaticResource Primary100}"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 8">
+                            <Label Text="📖" FontSize="20" 
+                                   HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Margin="12,0,0,0" VerticalOptions="Center">
+                            <Label Text="User Guide"
+                                   Style="{StaticResource BodyLarge}"
+                                   FontFamily="InterSemiBold" />
+                            <Label Text="Learn how to use Integrator Mobile"
+                                   Style="{StaticResource Caption}" />
+                        </VerticalStackLayout>
+                        <Label Grid.Column="2" Text="›" FontSize="24" 
+                               TextColor="{StaticResource TextTertiary}" VerticalOptions="Center" />
+                    </Grid>
+                    
+                    <BoxView HeightRequest="1" Color="{StaticResource BorderLight}" Margin="16,0" />
+                    
+                    <!-- FAQs -->
+                    <Grid Padding="16" ColumnDefinitions="Auto,*,Auto">
+                        <Border WidthRequest="40" HeightRequest="40"
+                                BackgroundColor="{StaticResource Primary100}"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 8">
+                            <Label Text="❓" FontSize="20" 
+                                   HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Margin="12,0,0,0" VerticalOptions="Center">
+                            <Label Text="FAQs"
+                                   Style="{StaticResource BodyLarge}"
+                                   FontFamily="InterSemiBold" />
+                            <Label Text="Frequently asked questions"
+                                   Style="{StaticResource Caption}" />
+                        </VerticalStackLayout>
+                        <Label Grid.Column="2" Text="›" FontSize="24" 
+                               TextColor="{StaticResource TextTertiary}" VerticalOptions="Center" />
+                    </Grid>
+                    
+                    <BoxView HeightRequest="1" Color="{StaticResource BorderLight}" Margin="16,0" />
+                    
+                    <!-- Live Chat -->
+                    <Grid Padding="16" ColumnDefinitions="Auto,*,Auto">
+                        <Border WidthRequest="40" HeightRequest="40"
+                                BackgroundColor="{StaticResource Primary100}"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 8">
+                            <Label Text="💬" FontSize="20" 
+                                   HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Margin="12,0,0,0" VerticalOptions="Center">
+                            <Label Text="Live Chat"
+                                   Style="{StaticResource BodyLarge}"
+                                   FontFamily="InterSemiBold" />
+                            <Label Text="Chat with our support team"
+                                   Style="{StaticResource Caption}" />
+                        </VerticalStackLayout>
+                        <Label Grid.Column="2" Text="›" FontSize="24" 
+                               TextColor="{StaticResource TextTertiary}" VerticalOptions="Center" />
+                    </Grid>
+                    
+                    <BoxView HeightRequest="1" Color="{StaticResource BorderLight}" Margin="16,0" />
+                    
+                    <!-- Call Support -->
+                    <Grid Padding="16" ColumnDefinitions="Auto,*,Auto">
+                        <Border WidthRequest="40" HeightRequest="40"
+                                BackgroundColor="{StaticResource Primary100}"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 8">
+                            <Label Text="📞" FontSize="20" 
+                                   HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Margin="12,0,0,0" VerticalOptions="Center">
+                            <Label Text="Call Support"
+                                   Style="{StaticResource BodyLarge}"
+                                   FontFamily="InterSemiBold" />
+                            <Label Text="1-800-INTEGRA (Mon-Fri 8am-6pm)"
+                                   Style="{StaticResource Caption}" />
+                        </VerticalStackLayout>
+                        <Label Grid.Column="2" Text="›" FontSize="24" 
+                               TextColor="{StaticResource TextTertiary}" VerticalOptions="Center" />
+                    </Grid>
+                    
+                    <BoxView HeightRequest="1" Color="{StaticResource BorderLight}" Margin="16,0" />
+                    
+                    <!-- Email Support -->
+                    <Grid Padding="16" ColumnDefinitions="Auto,*,Auto">
+                        <Border WidthRequest="40" HeightRequest="40"
+                                BackgroundColor="{StaticResource Primary100}"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 8">
+                            <Label Text="✉️" FontSize="20" 
+                                   HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Margin="12,0,0,0" VerticalOptions="Center">
+                            <Label Text="Email Support"
+                                   Style="{StaticResource BodyLarge}"
+                                   FontFamily="InterSemiBold" />
+                            <Label Text="support@integrator.com"
+                                   Style="{StaticResource Caption}" />
+                        </VerticalStackLayout>
+                        <Label Grid.Column="2" Text="›" FontSize="24" 
+                               TextColor="{StaticResource TextTertiary}" VerticalOptions="Center" />
+                    </Grid>
+                    
+                    <BoxView HeightRequest="1" Color="{StaticResource BorderLight}" Margin="16,0" />
+                    
+                    <!-- Terms & Privacy -->
+                    <Grid Padding="16" ColumnDefinitions="Auto,*,Auto">
+                        <Border WidthRequest="40" HeightRequest="40"
+                                BackgroundColor="{StaticResource Primary100}"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 8">
+                            <Label Text="📄" FontSize="20" 
+                                   HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Margin="12,0,0,0" VerticalOptions="Center">
+                            <Label Text="Terms &amp; Privacy"
+                                   Style="{StaticResource BodyLarge}"
+                                   FontFamily="InterSemiBold" />
+                            <Label Text="Legal information"
+                                   Style="{StaticResource Caption}" />
+                        </VerticalStackLayout>
+                        <Label Grid.Column="2" Text="›" FontSize="24" 
+                               TextColor="{StaticResource TextTertiary}" VerticalOptions="Center" />
+                    </Grid>
+                    
+                </VerticalStackLayout>
+            </controls:AppCard>
+            
+            <!-- Version Info -->
+            <VerticalStackLayout HorizontalOptions="Center" Spacing="4" Padding="0,16">
+                <Label Text="Integrator Mobile v3.0.0"
+                       Style="{StaticResource Caption}"
+                       HorizontalOptions="Center" />
+                <Label Text="© 2024 Integrator Software. All rights reserved."
+                       Style="{StaticResource Caption}"
+                       FontSize="10"
+                       HorizontalOptions="Center" />
+            </VerticalStackLayout>
+            
+            <!-- Placeholder -->
+            <controls:AppCard>
+                <Border BackgroundColor="{StaticResource BackgroundTertiary}"
+                        Stroke="{StaticResource BorderMedium}"
+                        StrokeThickness="2"
+                        StrokeDashArray="4,4"
+                        StrokeShape="RoundRectangle 8"
+                        Padding="24">
+                    <Label Text="Full help system will be developed in Phase 2"
+                           Style="{StaticResource Caption}"
+                           HorizontalOptions="Center" />
+                </Border>
+            </controls:AppCard>
+            
+        </VerticalStackLayout>
+    </ScrollView>
+    
+</ContentPage>

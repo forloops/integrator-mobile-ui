@@ -1,0 +1,7 @@
+<Project>
+  <PropertyGroup>
+    <!-- Skip Xcode version validation - Xcode 26.2 is installed but SDK expects 26.1 -->
+    <!-- This is safe for development/prototype purposes -->
+    <ValidateXcodeVersion>false</ValidateXcodeVersion>
+  </PropertyGroup>
+</Project>

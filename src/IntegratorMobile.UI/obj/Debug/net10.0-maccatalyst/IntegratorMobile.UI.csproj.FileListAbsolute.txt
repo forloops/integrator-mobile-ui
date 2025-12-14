@@ -1,0 +1,14 @@
+/Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.UI/bin/Debug/net10.0-maccatalyst/IntegratorMobile.UI.dll
+/Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.UI/bin/Debug/net10.0-maccatalyst/IntegratorMobile.UI.pdb
+/Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.UI/obj/Debug/net10.0-maccatalyst/_ProcessedBundleResourcesPath.items
+/Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.UI/obj/Debug/net10.0-maccatalyst/_ProcessedContentPath.items
+/Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.UI/obj/Debug/net10.0-maccatalyst/IntegratorMobile.UI.csproj.AssemblyReference.cache
+/Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.UI/obj/Debug/net10.0-maccatalyst/IntegratorMobile.UI.GeneratedMSBuildEditorConfig.editorconfig
+/Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.UI/obj/Debug/net10.0-maccatalyst/IntegratorMobile.UI.AssemblyInfoInputs.cache
+/Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.UI/obj/Debug/net10.0-maccatalyst/IntegratorMobile.UI.AssemblyInfo.cs
+/Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.UI/obj/Debug/net10.0-maccatalyst/IntegratorMobile.UI.csproj.CoreCompileInputs.cache
+/Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.UI/obj/Debug/net10.0-maccatalyst/XamlC.stamp
+/Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.UI/obj/Debug/net10.0-maccatalyst/IntegratorMobile.UI.dll
+/Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.UI/obj/Debug/net10.0-maccatalyst/refint/IntegratorMobile.UI.dll
+/Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.UI/obj/Debug/net10.0-maccatalyst/IntegratorMobile.UI.pdb
+/Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.UI/obj/Debug/net10.0-maccatalyst/ref/IntegratorMobile.UI.dll

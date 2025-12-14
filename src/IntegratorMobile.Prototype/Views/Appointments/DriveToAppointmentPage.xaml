@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:IntegratorMobile.UI.Controls;assembly=IntegratorMobile.UI"
+             x:Class="IntegratorMobile.Views.Appointments.DriveToAppointmentPage"
+             Title="Drive to Appointment"
+             BackgroundColor="{StaticResource BackgroundSecondary}">
+    
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="16">
+            
+            <!-- Status Card -->
+            <controls:AppCard>
+                <VerticalStackLayout Spacing="12" HorizontalOptions="Center">
+                    <Border WidthRequest="80" HeightRequest="80"
+                            BackgroundColor="{StaticResource Info}"
+                            StrokeThickness="0"
+                            StrokeShape="RoundRectangle 40"
+                            HorizontalOptions="Center">
+                        <Label Text="🚗" FontSize="36" 
+                               HorizontalOptions="Center" VerticalOptions="Center" />
+                    </Border>
+                    
+                    <Label Text="You are En Route"
+                           Style="{StaticResource HeadingMedium}"
+                           HorizontalOptions="Center" />
+                    
+                    <Label Text="Travel time is being tracked"
+                           Style="{StaticResource BodyMedium}"
+                           TextColor="{StaticResource TextSecondary}"
+                           HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </controls:AppCard>
+            
+            <!-- Address Card -->
+            <controls:AppCard>
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="DESTINATION" Style="{StaticResource Caption}" />
+                    
+                    <Label x:Name="AddressLabel"
+                           Text="1234 Sunset Boulevard"
+                           Style="{StaticResource BodyLarge}"
+                           FontFamily="InterSemiBold" />
+                    
+                    <Label x:Name="CityStateLabel"
+                           Text="Los Angeles, CA 90028"
+                           Style="{StaticResource BodyMedium}"
+                           TextColor="{StaticResource TextSecondary}" />
+                </VerticalStackLayout>
+            </controls:AppCard>
+            
+            <!-- Navigation Button -->
+            <controls:AppButton Text="NAVIGATE"
+                               Variant="Primary"
+                               IsBlock="True"
+                               Clicked="OnNavigateClicked" />
+            
+            <!-- Skip Button -->
+            <Button Text="SKIP TO ARRIVAL"
+                    TextColor="{StaticResource Primary600}"
+                    BackgroundColor="Transparent"
+                    FontFamily="InterSemiBold"
+                    HorizontalOptions="Center"
+                    Clicked="OnSkipClicked" />
+            
+            <!-- Spacer -->
+            <BoxView HeightRequest="40" Color="Transparent" />
+            
+            <!-- Cancel Button -->
+            <controls:AppButton Text="CANCEL OR RESCHEDULE"
+                               Variant="Danger"
+                               IsBlock="True"
+                               Clicked="OnCancelClicked" />
+            
+        </VerticalStackLayout>
+    </ScrollView>
+    
+</ContentPage>

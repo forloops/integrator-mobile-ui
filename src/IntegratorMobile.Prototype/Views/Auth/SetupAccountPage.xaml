@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:IntegratorMobile.UI.Controls;assembly=IntegratorMobile.UI"
+             x:Class="IntegratorMobile.Views.Auth.SetupAccountPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{StaticResource BackgroundSecondary}">
+    
+    <ScrollView>
+        <VerticalStackLayout Padding="24"
+                             Spacing="24"
+                             VerticalOptions="Center">
+            
+            <!-- Back Button -->
+            <HorizontalStackLayout>
+                <Button Text="‹ Back"
+                        TextColor="{StaticResource TextPrimary}"
+                        BackgroundColor="Transparent"
+                        FontFamily="InterSemiBold"
+                        Clicked="OnBackClicked" />
+            </HorizontalStackLayout>
+            
+            <!-- Header -->
+            <VerticalStackLayout Spacing="8" HorizontalOptions="Center">
+                <Label Text="Setup Account"
+                       Style="{StaticResource HeadingLarge}"
+                       HorizontalOptions="Center" />
+                <Label Text="Please enter your cell phone number to receive a text message with your username and temporary password."
+                       Style="{StaticResource BodyMedium}"
+                       TextColor="{StaticResource TextSecondary}"
+                       HorizontalTextAlignment="Center" />
+            </VerticalStackLayout>
+            
+            <!-- Card -->
+            <controls:AppCard CardPadding="24">
+                <VerticalStackLayout Spacing="20">
+                    
+                    <!-- Alert (shown when result is available) -->
+                    <Border x:Name="AlertBox"
+                            IsVisible="False"
+                            BackgroundColor="{StaticResource SuccessLight}"
+                            Stroke="Transparent"
+                            StrokeShape="RoundRectangle 8"
+                            Padding="16">
+                        <Label x:Name="AlertMessage"
+                               FontFamily="InterMedium" />
+                    </Border>
+                    
+                    <!-- Phone Number Input -->
+                    <controls:AppInput x:Name="PhoneInput"
+                                      Label="Phone Number"
+                                      Placeholder="(555) 123-4567"
+                                      Keyboard="Telephone"
+                                      ReturnType="Go"
+                                      Completed="OnPhoneCompleted" />
+                    
+                    <!-- Request Account Button -->
+                    <controls:AppButton x:Name="RequestButton"
+                                       Text="REQUEST ACCOUNT INFORMATION"
+                                       Variant="Primary"
+                                       IsBlock="True"
+                                       Clicked="OnRequestClicked" />
+                    
+                </VerticalStackLayout>
+            </controls:AppCard>
+            
+        </VerticalStackLayout>
+    </ScrollView>
+    
+</ContentPage>

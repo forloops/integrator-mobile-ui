@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:IntegratorMobile.UI.Controls;assembly=IntegratorMobile.UI"
+             x:Class="IntegratorMobile.Views.Appointments.WorkItemDetailPage"
+             Title="Work Item"
+             BackgroundColor="{StaticResource BackgroundSecondary}">
+    
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="16">
+            
+            <!-- Work Item Header -->
+            <controls:AppCard>
+                <VerticalStackLayout Spacing="8">
+                    <HorizontalStackLayout Spacing="8">
+                        <controls:AppBadge Text="INSPECTION" BadgeType="Info" />
+                        <controls:AppBadge x:Name="StatusBadge" Text="READY" BadgeType="Ready" />
+                    </HorizontalStackLayout>
+                    
+                    <Label Text="Annual HVAC Inspection"
+                           Style="{StaticResource HeadingMedium}" />
+                    
+                    <Label Text="Complete annual inspection checklist for HVAC Unit 1"
+                           Style="{StaticResource BodyMedium}"
+                           TextColor="{StaticResource TextSecondary}" />
+                    
+                    <BoxView HeightRequest="1" Color="{StaticResource BorderLight}" Margin="0,8" />
+                    
+                    <Grid ColumnDefinitions="*,*">
+                        <VerticalStackLayout>
+                            <Label Text="BUILDING" Style="{StaticResource Caption}" />
+                            <Label Text="Building A" Style="{StaticResource BodyMedium}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1">
+                            <Label Text="SYSTEM" Style="{StaticResource Caption}" />
+                            <Label Text="HVAC Unit 1" Style="{StaticResource BodyMedium}" />
+                        </VerticalStackLayout>
+                    </Grid>
+                </VerticalStackLayout>
+            </controls:AppCard>
+            
+            <!-- Milestones -->
+            <Label Text="MILESTONES" Style="{StaticResource Caption}" Margin="4,8,0,0" />
+            
+            <controls:AppCard CardPadding="0">
+                <VerticalStackLayout>
+                    
+                    <!-- Before Milestone -->
+                    <Grid Padding="16" ColumnDefinitions="Auto,*,Auto">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnBeforeMilestoneTapped" />
+                        </Grid.GestureRecognizers>
+                        <Border x:Name="BeforeIcon"
+                                WidthRequest="40" HeightRequest="40"
+                                BackgroundColor="{StaticResource Slate100}"
+                                Stroke="{StaticResource BorderMedium}"
+                                StrokeThickness="2"
+                                StrokeShape="RoundRectangle 20">
+                            <Label Text="1" TextColor="{StaticResource TextSecondary}" FontSize="16" FontAttributes="Bold"
+                                   HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Margin="12,0" VerticalOptions="Center">
+                            <Label Text="Before" 
+                                   Style="{StaticResource BodyLarge}" 
+                                   FontFamily="InterSemiBold" />
+                            <Label x:Name="BeforePhotoCount"
+                                   Text="0 photos" 
+                                   Style="{StaticResource Caption}" />
+                        </VerticalStackLayout>
+                        <controls:AppButton Grid.Column="2" 
+                                           Text="+ Add"
+                                           Variant="Outline"
+                                           Clicked="OnAddBeforePhotoClicked" />
+                    </Grid>
+                    
+                    <BoxView HeightRequest="1" Color="{StaticResource BorderLight}" Margin="16,0" />
+                    
+                    <!-- In Progress Milestone (Optional) -->
+                    <Grid Padding="16" ColumnDefinitions="Auto,*,Auto">
+                        <Border WidthRequest="40" HeightRequest="40"
+                                BackgroundColor="{StaticResource Slate100}"
+                                Stroke="{StaticResource BorderLight}"
+                                StrokeThickness="2"
+                                StrokeDashArray="4,4"
+                                StrokeShape="RoundRectangle 20">
+                            <Label Text="+" TextColor="{StaticResource TextTertiary}" FontSize="16"
+                                   HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Margin="12,0" VerticalOptions="Center">
+                            <Label Text="In Progress (Optional)" 
+                                   Style="{StaticResource BodyLarge}" 
+                                   TextColor="{StaticResource TextTertiary}" />
+                            <Label Text="Add progress documentation" 
+                                   Style="{StaticResource Caption}" />
+                        </VerticalStackLayout>
+                    </Grid>
+                    
+                    <BoxView HeightRequest="1" Color="{StaticResource BorderLight}" Margin="16,0" />
+                    
+                    <!-- Completed Milestone -->
+                    <Grid Padding="16" ColumnDefinitions="Auto,*,Auto">
+                        <Border x:Name="CompletedIcon"
+                                WidthRequest="40" HeightRequest="40"
+                                BackgroundColor="{StaticResource Slate100}"
+                                Stroke="{StaticResource BorderMedium}"
+                                StrokeThickness="2"
+                                StrokeShape="RoundRectangle 20">
+                            <Label Text="2" TextColor="{StaticResource TextTertiary}" FontSize="16" FontAttributes="Bold"
+                                   HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Margin="12,0" VerticalOptions="Center">
+                            <Label x:Name="CompletedLabel"
+                                   Text="Completed" 
+                                   Style="{StaticResource BodyLarge}" 
+                                   TextColor="{StaticResource TextTertiary}" />
+                            <Label x:Name="CompletedPhotoCount"
+                                   Text="Required to complete work item" 
+                                   Style="{StaticResource Caption}" />
+                        </VerticalStackLayout>
+                        <controls:AppButton x:Name="AddCompletedButton"
+                                           Grid.Column="2" 
+                                           Text="+ Add"
+                                           Variant="Ghost"
+                                           IsEnabled="False"
+                                           Clicked="OnAddCompletedPhotoClicked" />
+                    </Grid>
+                    
+                </VerticalStackLayout>
+            </controls:AppCard>
+            
+            <!-- Requirements Info -->
+            <Border BackgroundColor="{StaticResource InfoLight}"
+                    StrokeThickness="0"
+                    StrokeShape="RoundRectangle 8"
+                    Padding="12">
+                <HorizontalStackLayout Spacing="8">
+                    <Label Text="ℹ️" FontSize="16" VerticalOptions="Center" />
+                    <Label Text="At least 1 before photo and 1 completed photo required"
+                           Style="{StaticResource BodySmall}"
+                           TextColor="{StaticResource Info}"
+                           VerticalOptions="Center" />
+                </HorizontalStackLayout>
+            </Border>
+            
+            <!-- Action Buttons -->
+            <controls:AppButton x:Name="CompleteButton"
+                               Text="MARK AS COMPLETED"
+                               Variant="Success"
+                               IsBlock="True"
+                               IsEnabled="False"
+                               Clicked="OnMarkCompletedClicked" />
+            
+            <controls:AppButton Text="NEED TO RETURN"
+                               Variant="Secondary"
+                               IsBlock="True"
+                               Clicked="OnNeedToReturnClicked" />
+            
+        </VerticalStackLayout>
+    </ScrollView>
+    
+</ContentPage>

@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:IntegratorMobile.ViewModels"
+             xmlns:models="clr-namespace:IntegratorMobile.MockData.Models;assembly=IntegratorMobile.MockData"
+             xmlns:controls="clr-namespace:IntegratorMobile.UI.Controls;assembly=IntegratorMobile.UI"
+             xmlns:converters="clr-namespace:IntegratorMobile.Converters"
+             x:Class="IntegratorMobile.Views.Appointments.AppointmentDetailPage"
+             x:DataType="vm:AppointmentDetailPageViewModel"
+             Title="{Binding Title}"
+             BackgroundColor="{StaticResource BackgroundSecondary}">
+
+    <ContentPage.Resources>
+        <converters:TabSelectedConverter x:Key="TabSelectedConverter" />
+        <converters:IntEqualConverter x:Key="IntEqualConverter" />
+        <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="Auto,*">
+        
+        <!-- Tab Header -->
+        <ScrollView Grid.Row="0" 
+                    Orientation="Horizontal"
+                    HorizontalScrollBarVisibility="Never"
+                    BackgroundColor="{StaticResource Slate700}">
+            <HorizontalStackLayout Padding="8">
+                <Button Text="JOB SUMMARY"
+                        TextColor="{Binding SelectedTabIndex, Converter={StaticResource TabSelectedConverter}, ConverterParameter=0}"
+                        BackgroundColor="Transparent"
+                        FontFamily="InterSemiBold"
+                        FontSize="13"
+                        Padding="12,8"
+                        Command="{Binding SetTabCommand}"
+                        CommandParameter="0" />
+                
+                <Button Text="JOB"
+                        TextColor="{Binding SelectedTabIndex, Converter={StaticResource TabSelectedConverter}, ConverterParameter=1}"
+                        BackgroundColor="Transparent"
+                        FontFamily="InterSemiBold"
+                        FontSize="13"
+                        Padding="12,8"
+                        Command="{Binding SetTabCommand}"
+                        CommandParameter="1" />
+                
+                <Button Text="CUSTOMER"
+                        TextColor="{Binding SelectedTabIndex, Converter={StaticResource TabSelectedConverter}, ConverterParameter=2}"
+                        BackgroundColor="Transparent"
+                        FontFamily="InterSemiBold"
+                        FontSize="13"
+                        Padding="12,8"
+                        Command="{Binding SetTabCommand}"
+                        CommandParameter="2" />
+                
+                <Button Text="PHOTOS"
+                        TextColor="{Binding SelectedTabIndex, Converter={StaticResource TabSelectedConverter}, ConverterParameter=3}"
+                        BackgroundColor="Transparent"
+                        FontFamily="InterSemiBold"
+                        FontSize="13"
+                        Padding="12,8"
+                        Command="{Binding SetTabCommand}"
+                        CommandParameter="3" />
+            </HorizontalStackLayout>
+        </ScrollView>
+        
+        <!-- Tab Content -->
+        <Grid Grid.Row="1">
+            
+            <!-- JOB SUMMARY Tab -->
+            <ScrollView IsVisible="{Binding SelectedTabIndex, Converter={StaticResource IntEqualConverter}, ConverterParameter=0}">
+                <VerticalStackLayout Padding="16" Spacing="16">
+                    
+                    <!-- Punch List -->
+                    <Label Text="PUNCH LIST" Style="{StaticResource Caption}" Margin="4,0,0,0" />
+                    
+                    <controls:AppCard CardPadding="0">
+                        <VerticalStackLayout>
+                            <!-- Step 1: Drive to Appointment -->
+                            <controls:PunchListItem 
+                                Title="Drive to Appointment"
+                                Description="Driving or need directions? Start here or skip to the next item."
+                                StepNumber="1"
+                                Status="Available"
+                                Command="{Binding GoToDriveCommand}" />
+                            
+                            <BoxView HeightRequest="1" Color="{StaticResource BorderLight}" />
+                            
+                            <!-- Step 2: Appointment Arrival -->
+                            <controls:PunchListItem 
+                                Title="Appointment Arrival"
+                                Description="Take your arrival photo and review scope of work."
+                                StepNumber="2"
+                                Status="Locked"
+                                Command="{Binding GoToArrivalCommand}" />
+                            
+                            <BoxView HeightRequest="1" Color="{StaticResource BorderLight}" />
+                            
+                            <!-- Step 3: Survey Buildings & Systems -->
+                            <controls:PunchListItem 
+                                Title="Survey Buildings &amp; Systems"
+                                Description="Take photos, videos and notes to document buildings &amp; systems."
+                                StepNumber="3"
+                                Status="Locked"
+                                Command="{Binding GoToSurveyCommand}" />
+                            
+                            <BoxView HeightRequest="1" Color="{StaticResource BorderLight}" />
+                            
+                            <!-- Step 4: Complete Appointment -->
+                            <controls:PunchListItem 
+                                Title="Complete Appointment"
+                                Description="When you have completed, mark this appointment as completed."
+                                StepNumber="4"
+                                Status="Locked"
+                                Command="{Binding GoToCompleteCommand}" />
+                        </VerticalStackLayout>
+                    </controls:AppCard>
+                    
+                    <!-- Buildings -->
+                    <Label Text="BUILDINGS" Style="{StaticResource Caption}" Margin="4,8,0,0" />
+                    
+                    <controls:AppCard CardPadding="0">
+                        <CollectionView ItemsSource="{Binding Appointment.Buildings}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="models:Building">
+                                    <Grid Padding="16" ColumnDefinitions="Auto,*,Auto">
+                                        <Border WidthRequest="40" HeightRequest="40"
+                                                BackgroundColor="{StaticResource Primary50}"
+                                                StrokeThickness="0"
+                                                StrokeShape="RoundRectangle 8">
+                                            <Label Text="🏢" FontSize="20" 
+                                                   HorizontalOptions="Center" VerticalOptions="Center" />
+                                        </Border>
+                                        <VerticalStackLayout Grid.Column="1" Margin="12,0" VerticalOptions="Center">
+                                            <Label Text="{Binding Name}" 
+                                                   Style="{StaticResource BodyLarge}" 
+                                                   FontFamily="InterSemiBold" />
+                                            <Label Text="{Binding Systems.Count, StringFormat='{0} systems'}" 
+                                                   Style="{StaticResource Caption}" />
+                                        </VerticalStackLayout>
+                                        <Label Grid.Column="2" Text="›" FontSize="24" 
+                                               TextColor="{StaticResource TextTertiary}" VerticalOptions="Center" />
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </controls:AppCard>
+                    
+                    <!-- Cancel/Reschedule Button -->
+                    <controls:AppButton Text="CANCEL OR RESCHEDULE"
+                                       Variant="Danger"
+                                       IsBlock="True"
+                                       Command="{Binding CancelOrRescheduleCommand}" />
+                    
+                </VerticalStackLayout>
+            </ScrollView>
+            
+            <!-- JOB Tab -->
+            <ScrollView IsVisible="{Binding SelectedTabIndex, Converter={StaticResource IntEqualConverter}, ConverterParameter=1}">
+                <VerticalStackLayout Padding="16" Spacing="16">
+                    
+                    <controls:AppCard>
+                        <VerticalStackLayout Spacing="12">
+                            <Label Text="{Binding Appointment.JobNumber, StringFormat='Job #{0}'}"
+                                   Style="{StaticResource Caption}" />
+                            <Label Text="{Binding Appointment.CustomerName}"
+                                   Style="{StaticResource HeadingMedium}" />
+                            <Label Text="{Binding Appointment.SiteName}"
+                                   Style="{StaticResource BodyMedium}"
+                                   TextColor="{StaticResource TextSecondary}" />
+                            
+                            <BoxView HeightRequest="1" Color="{StaticResource BorderLight}" Margin="0,8" />
+                            
+                            <Label Text="ADDRESS" Style="{StaticResource Caption}" />
+                            <Grid ColumnDefinitions="*,Auto">
+                                <VerticalStackLayout>
+                                    <Label Text="{Binding Appointment.Location.Address}"
+                                           Style="{StaticResource BodyMedium}" />
+                                    <Label Text="{Binding Appointment.Location.CityStateZip}"
+                                           Style="{StaticResource BodySmall}"
+                                           TextColor="{StaticResource TextSecondary}" />
+                                </VerticalStackLayout>
+                                <Button Grid.Column="1"
+                                        Text="📍"
+                                        FontSize="24"
+                                        BackgroundColor="Transparent"
+                                        Command="{Binding NavigateToAddressCommand}" />
+                            </Grid>
+                            
+                            <BoxView HeightRequest="1" Color="{StaticResource BorderLight}" Margin="0,8" />
+                            
+                            <Label Text="SCOPE OF WORK" Style="{StaticResource Caption}" />
+                            <Label Text="{Binding Appointment.ScopeOfWork}"
+                                   Style="{StaticResource BodyMedium}" />
+                            
+                            <BoxView HeightRequest="1" Color="{StaticResource BorderLight}" Margin="0,8" />
+                            
+                            <Label Text="SCHEDULED" Style="{StaticResource Caption}" />
+                            <Label Text="{Binding Appointment.ScheduledStart, StringFormat='{0:dddd, MMMM d, yyyy}'}"
+                                   Style="{StaticResource BodyMedium}" />
+                            <Label Text="{Binding Appointment.ScheduledStart, StringFormat='{0:h:mm tt} - '}"
+                                   Style="{StaticResource BodySmall}"
+                                   TextColor="{StaticResource TextSecondary}" />
+                        </VerticalStackLayout>
+                    </controls:AppCard>
+                    
+                    <!-- Work Items -->
+                    <Label Text="WORK ITEMS" Style="{StaticResource Caption}" Margin="4,8,0,0" />
+                    
+                    <CollectionView ItemsSource="{Binding WorkItems}"
+                                   SelectionMode="Single"
+                                   SelectionChangedCommand="{Binding SelectWorkItemCommand}"
+                                   SelectionChangedCommandParameter="{Binding SelectedItem, Source={RelativeSource Self}}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:WorkItem">
+                                <controls:AppCard Margin="0,0,0,8">
+                                    <VerticalStackLayout Spacing="4">
+                                        <Label Text="{Binding Title}"
+                                               Style="{StaticResource BodyLarge}"
+                                               FontFamily="InterSemiBold" />
+                                        <Label Text="{Binding TypeDisplay}"
+                                               Style="{StaticResource Caption}"
+                                               TextColor="{StaticResource Primary600}" />
+                                        <Label Text="{Binding BuildingName, StringFormat='Building: {0}'}"
+                                               Style="{StaticResource BodySmall}" />
+                                        <Label Text="{Binding SystemName, StringFormat='System: {0}'}"
+                                               Style="{StaticResource BodySmall}" />
+                                        <controls:AppBadge Text="{Binding StatusDisplay}"
+                                                          Margin="0,4,0,0" />
+                                    </VerticalStackLayout>
+                                </controls:AppCard>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    
+                </VerticalStackLayout>
+            </ScrollView>
+            
+            <!-- CUSTOMER Tab -->
+            <ScrollView IsVisible="{Binding SelectedTabIndex, Converter={StaticResource IntEqualConverter}, ConverterParameter=2}">
+                <VerticalStackLayout Padding="16" Spacing="16">
+                    
+                    <controls:AppCard>
+                        <VerticalStackLayout Spacing="16">
+                            <Label Text="{Binding Appointment.Customer.Name}"
+                                   Style="{StaticResource HeadingMedium}" />
+                            
+                            <VerticalStackLayout Spacing="4"
+                                                IsVisible="{Binding Appointment.Customer.ApprovedBy, Converter={StaticResource InverseBoolConverter}}">
+                                <Label Text="WORK APPROVED BY" Style="{StaticResource Caption}" />
+                                <HorizontalStackLayout Spacing="8">
+                                    <Label Text="✓" TextColor="{StaticResource Success}" FontSize="16" />
+                                    <Label Text="{Binding Appointment.Customer.ApprovedBy}"
+                                           Style="{StaticResource BodyMedium}" />
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+                            
+                            <BoxView HeightRequest="1" Color="{StaticResource BorderLight}" />
+                            
+                            <VerticalStackLayout Spacing="4">
+                                <Label Text="ON-SITE CONTACT" Style="{StaticResource Caption}" />
+                                <Label Text="{Binding Appointment.Customer.OnSiteContact.Name}"
+                                       Style="{StaticResource BodyMedium}"
+                                       FontFamily="InterSemiBold" />
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <Label Text="{Binding Appointment.Customer.OnSiteContact.Phone}"
+                                           Style="{StaticResource BodyMedium}"
+                                           TextColor="{StaticResource Primary600}" />
+                                    <Button Grid.Column="1"
+                                            Text="📞"
+                                            FontSize="20"
+                                            BackgroundColor="Transparent"
+                                            Command="{Binding CallContactCommand}"
+                                            CommandParameter="{Binding Appointment.Customer.OnSiteContact.Phone}" />
+                                </Grid>
+                            </VerticalStackLayout>
+                            
+                            <BoxView HeightRequest="1" Color="{StaticResource BorderLight}" />
+                            
+                            <VerticalStackLayout Spacing="4">
+                                <Label Text="BILLING CONTACT" Style="{StaticResource Caption}" />
+                                <Label Text="{Binding Appointment.Customer.BillingContact.Name}"
+                                       Style="{StaticResource BodyMedium}"
+                                       FontFamily="InterSemiBold" />
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <Label Text="{Binding Appointment.Customer.BillingContact.Phone}"
+                                           Style="{StaticResource BodyMedium}"
+                                           TextColor="{StaticResource Primary600}" />
+                                    <Button Grid.Column="1"
+                                            Text="📞"
+                                            FontSize="20"
+                                            BackgroundColor="Transparent"
+                                            Command="{Binding CallContactCommand}"
+                                            CommandParameter="{Binding Appointment.Customer.BillingContact.Phone}" />
+                                </Grid>
+                            </VerticalStackLayout>
+                        </VerticalStackLayout>
+                    </controls:AppCard>
+                    
+                    <controls:AppButton Text="SEND CUSTOMER NOTIFICATION"
+                                       Variant="Outline"
+                                       IsBlock="True" />
+                    
+                </VerticalStackLayout>
+            </ScrollView>
+            
+            <!-- PHOTOS Tab -->
+            <ScrollView IsVisible="{Binding SelectedTabIndex, Converter={StaticResource IntEqualConverter}, ConverterParameter=3}">
+                <VerticalStackLayout Padding="16" Spacing="16">
+                    
+                    <Label Text="No photos yet"
+                           Style="{StaticResource BodyLarge}"
+                           HorizontalOptions="Center"
+                           Margin="0,40" />
+                    
+                    <Label Text="Photos will appear here as you document the appointment."
+                           Style="{StaticResource BodySmall}"
+                           HorizontalTextAlignment="Center"
+                           TextColor="{StaticResource TextSecondary}" />
+                    
+                </VerticalStackLayout>
+            </ScrollView>
+            
+        </Grid>
+        
+        <!-- Loading -->
+        <ActivityIndicator Grid.RowSpan="2"
+                          IsRunning="{Binding IsBusy}"
+                          IsVisible="{Binding IsBusy}"
+                          Color="{StaticResource Primary600}"
+                          VerticalOptions="Center"
+                          HorizontalOptions="Center" />
+    </Grid>
+    
+</ContentPage>

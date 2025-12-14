@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="IntegratorMobile.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:auth="clr-namespace:IntegratorMobile.Views.Auth"
+    xmlns:home="clr-namespace:IntegratorMobile.Views.Home"
+    xmlns:appt="clr-namespace:IntegratorMobile.Views.Appointments"
+    xmlns:settings="clr-namespace:IntegratorMobile.Views.Settings"
+    xmlns:profile="clr-namespace:IntegratorMobile.Views.Profile"
+    xmlns:jobs="clr-namespace:IntegratorMobile.Views.Jobs"
+    xmlns:directory="clr-namespace:IntegratorMobile.Views.Directory"
+    xmlns:diagnostics="clr-namespace:IntegratorMobile.Views.Diagnostics"
+    xmlns:help="clr-namespace:IntegratorMobile.Views.Help"
+    Shell.FlyoutBehavior="Disabled"
+    Shell.NavBarIsVisible="False"
+    FlyoutBackgroundColor="White"
+    FlyoutWidth="300">
+
+    <!-- Flyout Header - User Profile Section -->
+    <Shell.FlyoutHeader>
+        <VerticalStackLayout BackgroundColor="White" Padding="20">
+            <HorizontalStackLayout Spacing="12">
+                <!-- Avatar -->
+                <Border WidthRequest="64" HeightRequest="64"
+                        BackgroundColor="#EEF2FF"
+                        StrokeThickness="2"
+                        Stroke="#E2E8F0"
+                        StrokeShape="RoundRectangle 32">
+                    <Label Text="JS"
+                           FontSize="22"
+                           FontAttributes="Bold"
+                           TextColor="#4338CA"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+                </Border>
+                
+                <!-- User Info -->
+                <VerticalStackLayout VerticalOptions="Center" Spacing="2">
+                    <Label Text="John Smith"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="#1E293B" />
+                    <Label Text="john.smith@crowther.com"
+                           FontSize="12"
+                           TextColor="#64748B" />
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+            
+            <!-- Divider -->
+            <BoxView HeightRequest="1" Color="#E2E8F0" Margin="0,16,0,0" />
+        </VerticalStackLayout>
+    </Shell.FlyoutHeader>
+    
+    <!-- Flyout Footer - Version -->
+    <Shell.FlyoutFooter>
+        <VerticalStackLayout BackgroundColor="White" Padding="20">
+            <BoxView HeightRequest="1" Color="#E2E8F0" Margin="0,0,0,16" />
+            <Label Text="3.0"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="#1E293B"
+                   HorizontalOptions="Center" />
+            <Label Text="INTEGRATOR MOBILE VERSION"
+                   FontSize="10"
+                   TextColor="#94A3B8"
+                   HorizontalOptions="Center"
+                   CharacterSpacing="1" />
+        </VerticalStackLayout>
+    </Shell.FlyoutFooter>
+
+    <!-- Auth Flow (hidden from flyout) -->
+    <ShellContent
+        Route="identify"
+        FlyoutItemIsVisible="False"
+        Shell.NavBarIsVisible="False"
+        ContentTemplate="{DataTemplate auth:IdentifyPage}" />
+
+    <!-- Main Navigation Items -->
+    <FlyoutItem Title="Home">
+        <FlyoutItem.Icon>
+            <FontImageSource Glyph="🏠" FontFamily="Arial" Size="24" />
+        </FlyoutItem.Icon>
+        <ShellContent
+            Route="home"
+            Shell.NavBarIsVisible="False"
+            ContentTemplate="{DataTemplate home:HomePage}" />
+    </FlyoutItem>
+    
+    <FlyoutItem Title="Appointments">
+        <FlyoutItem.Icon>
+            <FontImageSource Glyph="📅" FontFamily="Arial" Size="24" />
+        </FlyoutItem.Icon>
+        <ShellContent
+            Route="appointments"
+            Shell.NavBarIsVisible="False"
+            ContentTemplate="{DataTemplate appt:AppointmentsPage}" />
+    </FlyoutItem>
+    
+    <FlyoutItem Title="Operation Jobs">
+        <FlyoutItem.Icon>
+            <FontImageSource Glyph="💼" FontFamily="Arial" Size="24" />
+        </FlyoutItem.Icon>
+        <ShellContent Route="jobs" Shell.NavBarIsVisible="False"
+                      ContentTemplate="{DataTemplate jobs:OperationJobsPage}" />
+    </FlyoutItem>
+    
+    <FlyoutItem Title="Employee Directory">
+        <FlyoutItem.Icon>
+            <FontImageSource Glyph="👥" FontFamily="Arial" Size="24" />
+        </FlyoutItem.Icon>
+        <ShellContent Route="directory" Shell.NavBarIsVisible="False"
+                      ContentTemplate="{DataTemplate directory:EmployeeDirectoryPage}" />
+    </FlyoutItem>
+
+    <!-- Separator -->
+    <MenuItem Text="─────────────────" IsEnabled="False" />
+    
+    <FlyoutItem Title="My Profile">
+        <FlyoutItem.Icon>
+            <FontImageSource Glyph="👤" FontFamily="Arial" Size="24" />
+        </FlyoutItem.Icon>
+        <ShellContent Route="profile" Shell.NavBarIsVisible="False" 
+                      ContentTemplate="{DataTemplate profile:ProfilePage}" />
+    </FlyoutItem>
+    
+    <FlyoutItem Title="Settings">
+        <FlyoutItem.Icon>
+            <FontImageSource Glyph="⚙️" FontFamily="Arial" Size="24" />
+        </FlyoutItem.Icon>
+        <ShellContent Route="settings" Shell.NavBarIsVisible="False" 
+                      ContentTemplate="{DataTemplate settings:SettingsPage}" />
+    </FlyoutItem>
+    
+    <FlyoutItem Title="Diagnostics">
+        <FlyoutItem.Icon>
+            <FontImageSource Glyph="🔧" FontFamily="Arial" Size="24" />
+        </FlyoutItem.Icon>
+        <ShellContent Route="diagnostics" Shell.NavBarIsVisible="False"
+                      ContentTemplate="{DataTemplate diagnostics:DiagnosticsPage}" />
+    </FlyoutItem>
+    
+    <FlyoutItem Title="Help">
+        <FlyoutItem.Icon>
+            <FontImageSource Glyph="❓" FontFamily="Arial" Size="24" />
+        </FlyoutItem.Icon>
+        <ShellContent Route="help" Shell.NavBarIsVisible="False"
+                      ContentTemplate="{DataTemplate help:HelpPage}" />
+    </FlyoutItem>
+
+    <!-- Logout MenuItem -->
+    <MenuItem Text="Logout" Clicked="OnLogoutClicked">
+        <MenuItem.IconImageSource>
+            <FontImageSource Glyph="🚪" FontFamily="Arial" Size="24" />
+        </MenuItem.IconImageSource>
+    </MenuItem>
+
+</Shell>

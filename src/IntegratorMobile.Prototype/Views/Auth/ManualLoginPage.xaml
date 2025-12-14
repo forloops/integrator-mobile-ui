@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:IntegratorMobile.ViewModels"
+             xmlns:controls="clr-namespace:IntegratorMobile.UI.Controls;assembly=IntegratorMobile.UI"
+             x:Class="IntegratorMobile.Views.Auth.ManualLoginPage"
+             x:DataType="vm:ManualLoginPageViewModel"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#323F4B">
+    
+    <Grid>
+        <!-- Background -->
+        <BoxView Color="#323F4B" />
+        
+        <ScrollView>
+            <VerticalStackLayout Padding="24"
+                                 Spacing="24"
+                                 VerticalOptions="Center">
+                
+                <!-- Back Button -->
+                <HorizontalStackLayout>
+                    <Button Text="‹ Back"
+                            TextColor="White"
+                            BackgroundColor="Transparent"
+                            FontFamily="InterSemiBold"
+                            Command="{Binding GoBackCommand}" />
+                </HorizontalStackLayout>
+                
+                <!-- Logo -->
+                <Image Source="integrator_logo.png"
+                       HeightRequest="80"
+                       Aspect="AspectFit"
+                       HorizontalOptions="Center"
+                       Margin="0,0,0,20" />
+                
+                <!-- Card -->
+                <controls:AppCard CardPadding="24">
+                    <VerticalStackLayout Spacing="20">
+                        
+                        <!-- Title -->
+                        <Label Text="Manual Login"
+                               Style="{StaticResource HeadingMedium}"
+                               HorizontalOptions="Center" />
+                        
+                        <!-- Username -->
+                        <controls:AppInput Label="Username"
+                                          Placeholder="Enter your username"
+                                          Text="{Binding Username}"
+                                          ReturnType="Next" />
+                        
+                        <!-- Password -->
+                        <controls:AppInput Label="Password"
+                                          Placeholder="Enter your password"
+                                          Text="{Binding Password}"
+                                          IsPassword="True"
+                                          ReturnType="Go"
+                                          Completed="OnPasswordCompleted" />
+                        
+                        <!-- Error Message -->
+                        <Label Text="{Binding ErrorMessage}"
+                               TextColor="{StaticResource Error}"
+                               FontSize="14"
+                               IsVisible="{Binding ShowError}"
+                               HorizontalTextAlignment="Center" />
+                        
+                        <!-- Login Button -->
+                        <controls:AppButton Text="LOGIN"
+                                           Variant="Primary"
+                                           IsBlock="True"
+                                           IsLoading="{Binding IsBusy}"
+                                           Command="{Binding LoginCommand}" />
+                        
+                        <!-- Hint -->
+                        <Label Text="Demo: Use username 'jsmith' with any password"
+                               Style="{StaticResource Caption}"
+                               HorizontalTextAlignment="Center" />
+                        
+                    </VerticalStackLayout>
+                </controls:AppCard>
+                
+            </VerticalStackLayout>
+        </ScrollView>
+        
+        <!-- Loading Overlay -->
+        <Grid IsVisible="{Binding IsBusy}"
+              BackgroundColor="#80000000">
+            <ActivityIndicator IsRunning="{Binding IsBusy}"
+                              Color="{StaticResource Primary500}"
+                              VerticalOptions="Center"
+                              HorizontalOptions="Center" />
+        </Grid>
+    </Grid>
+    
+</ContentPage>

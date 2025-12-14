@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:IntegratorMobile.UI.Controls;assembly=IntegratorMobile.UI"
+             x:Class="IntegratorMobile.Views.Jobs.OperationJobsPage"
+             Title="Operation Jobs"
+             BackgroundColor="{StaticResource BackgroundSecondary}">
+    
+    <Grid RowDefinitions="Auto,Auto,*">
+        
+        <!-- Header with Icon -->
+        <HorizontalStackLayout Grid.Row="0" Padding="16,16,16,8" Spacing="12">
+            <Border WidthRequest="40" HeightRequest="40"
+                    BackgroundColor="{StaticResource Primary100}"
+                    StrokeThickness="0"
+                    StrokeShape="RoundRectangle 8">
+                <Label Text="💼" FontSize="20" 
+                       HorizontalOptions="Center" VerticalOptions="Center" />
+            </Border>
+            <VerticalStackLayout VerticalOptions="Center">
+                <Label Text="Job Queue"
+                       Style="{StaticResource HeadingSmall}" />
+                <Label x:Name="JobCountLabel" Text="4 jobs"
+                       Style="{StaticResource Caption}" />
+            </VerticalStackLayout>
+        </HorizontalStackLayout>
+        
+        <!-- Filter Tabs -->
+        <ScrollView Grid.Row="1" Orientation="Horizontal" HorizontalScrollBarVisibility="Never">
+            <HorizontalStackLayout Padding="16,8" Spacing="8">
+                <Button x:Name="AllFilter" Text="All" 
+                        Style="{StaticResource PrimaryButton}"
+                        CornerRadius="20"
+                        Padding="16,8"
+                        HeightRequest="36"
+                        Clicked="OnFilterClicked" />
+                <Button x:Name="PendingFilter" Text="Pending" 
+                        Style="{StaticResource GhostButton}"
+                        BackgroundColor="{StaticResource BackgroundTertiary}"
+                        CornerRadius="20"
+                        Padding="16,8"
+                        HeightRequest="36"
+                        Clicked="OnFilterClicked" />
+                <Button x:Name="InProgressFilter" Text="In Progress" 
+                        Style="{StaticResource GhostButton}"
+                        BackgroundColor="{StaticResource BackgroundTertiary}"
+                        CornerRadius="20"
+                        Padding="16,8"
+                        HeightRequest="36"
+                        Clicked="OnFilterClicked" />
+                <Button x:Name="CompletedFilter" Text="Completed" 
+                        Style="{StaticResource GhostButton}"
+                        BackgroundColor="{StaticResource BackgroundTertiary}"
+                        CornerRadius="20"
+                        Padding="16,8"
+                        HeightRequest="36"
+                        Clicked="OnFilterClicked" />
+            </HorizontalStackLayout>
+        </ScrollView>
+        
+        <!-- Jobs List -->
+        <ScrollView Grid.Row="2">
+            <VerticalStackLayout Padding="16,8,16,16" Spacing="12">
+                
+                <!-- Job Card 1 - In Progress / High Priority -->
+                <controls:AppCard>
+                    <VerticalStackLayout Spacing="8">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label Text="JOB-001"
+                                   Style="{StaticResource Caption}"
+                                   FontFamily="InterMedium" />
+                            <Border Grid.Column="1"
+                                    BackgroundColor="#FEE2E2"
+                                    StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 4"
+                                    Padding="8,4">
+                                <Label Text="high"
+                                       FontSize="10"
+                                       FontFamily="InterMedium"
+                                       TextColor="#DC2626" />
+                            </Border>
+                        </Grid>
+                        
+                        <Label Text="HVAC System Overhaul"
+                               Style="{StaticResource BodyLarge}"
+                               FontFamily="InterSemiBold" />
+                        <Label Text="Metro Business Center"
+                               Style="{StaticResource BodyMedium}"
+                               TextColor="{StaticResource TextSecondary}" />
+                        
+                        <BoxView HeightRequest="1" Color="{StaticResource BorderLight}" Margin="0,4" />
+                        
+                        <Grid ColumnDefinitions="Auto,*,Auto">
+                            <HorizontalStackLayout Spacing="8">
+                                <Border WidthRequest="24" HeightRequest="24"
+                                        BackgroundColor="#E0F2FE"
+                                        StrokeThickness="0"
+                                        StrokeShape="RoundRectangle 4">
+                                    <Label Text="🕐" FontSize="12" 
+                                           HorizontalOptions="Center" VerticalOptions="Center" />
+                                </Border>
+                                <Label Text="in progress"
+                                       Style="{StaticResource Caption}"
+                                       TextColor="{StaticResource TextSecondary}"
+                                       VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                            <Label Grid.Column="2" Text="Due: Dec 15, 2024"
+                                   Style="{StaticResource Caption}"
+                                   TextColor="{StaticResource TextSecondary}" />
+                        </Grid>
+                    </VerticalStackLayout>
+                </controls:AppCard>
+                
+                <!-- Job Card 2 - Pending / Medium Priority -->
+                <controls:AppCard>
+                    <VerticalStackLayout Spacing="8">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label Text="JOB-002"
+                                   Style="{StaticResource Caption}"
+                                   FontFamily="InterMedium" />
+                            <Border Grid.Column="1"
+                                    BackgroundColor="#FEF3C7"
+                                    StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 4"
+                                    Padding="8,4">
+                                <Label Text="medium"
+                                       FontSize="10"
+                                       FontFamily="InterMedium"
+                                       TextColor="#D97706" />
+                            </Border>
+                        </Grid>
+                        
+                        <Label Text="Ductwork Inspection"
+                               Style="{StaticResource BodyLarge}"
+                               FontFamily="InterSemiBold" />
+                        <Label Text="Riverside Apartments"
+                               Style="{StaticResource BodyMedium}"
+                               TextColor="{StaticResource TextSecondary}" />
+                        
+                        <BoxView HeightRequest="1" Color="{StaticResource BorderLight}" Margin="0,4" />
+                        
+                        <Grid ColumnDefinitions="Auto,*,Auto">
+                            <HorizontalStackLayout Spacing="8">
+                                <Border WidthRequest="24" HeightRequest="24"
+                                        BackgroundColor="#FEF3C7"
+                                        StrokeThickness="0"
+                                        StrokeShape="RoundRectangle 4">
+                                    <Label Text="⚠️" FontSize="12" 
+                                           HorizontalOptions="Center" VerticalOptions="Center" />
+                                </Border>
+                                <Label Text="pending"
+                                       Style="{StaticResource Caption}"
+                                       TextColor="{StaticResource TextSecondary}"
+                                       VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                            <Label Grid.Column="2" Text="Due: Dec 18, 2024"
+                                   Style="{StaticResource Caption}"
+                                   TextColor="{StaticResource TextSecondary}" />
+                        </Grid>
+                    </VerticalStackLayout>
+                </controls:AppCard>
+                
+                <!-- Job Card 3 - Completed / Low Priority -->
+                <controls:AppCard>
+                    <VerticalStackLayout Spacing="8">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label Text="JOB-003"
+                                   Style="{StaticResource Caption}"
+                                   FontFamily="InterMedium" />
+                            <Border Grid.Column="1"
+                                    BackgroundColor="{StaticResource BackgroundTertiary}"
+                                    StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 4"
+                                    Padding="8,4">
+                                <Label Text="low"
+                                       FontSize="10"
+                                       FontFamily="InterMedium"
+                                       TextColor="{StaticResource TextSecondary}" />
+                            </Border>
+                        </Grid>
+                        
+                        <Label Text="Thermostat Replacement"
+                               Style="{StaticResource BodyLarge}"
+                               FontFamily="InterSemiBold" />
+                        <Label Text="Chen Residence"
+                               Style="{StaticResource BodyMedium}"
+                               TextColor="{StaticResource TextSecondary}" />
+                        
+                        <BoxView HeightRequest="1" Color="{StaticResource BorderLight}" Margin="0,4" />
+                        
+                        <Grid ColumnDefinitions="Auto,*,Auto">
+                            <HorizontalStackLayout Spacing="8">
+                                <Border WidthRequest="24" HeightRequest="24"
+                                        BackgroundColor="#DCFCE7"
+                                        StrokeThickness="0"
+                                        StrokeShape="RoundRectangle 4">
+                                    <Label Text="✓" FontSize="12" 
+                                           TextColor="{StaticResource Success}"
+                                           HorizontalOptions="Center" VerticalOptions="Center" />
+                                </Border>
+                                <Label Text="completed"
+                                       Style="{StaticResource Caption}"
+                                       TextColor="{StaticResource TextSecondary}"
+                                       VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                            <Label Grid.Column="2" Text="Due: Dec 10, 2024"
+                                   Style="{StaticResource Caption}"
+                                   TextColor="{StaticResource TextSecondary}" />
+                        </Grid>
+                    </VerticalStackLayout>
+                </controls:AppCard>
+                
+                <!-- Job Card 4 - Pending / High Priority -->
+                <controls:AppCard>
+                    <VerticalStackLayout Spacing="8">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label Text="JOB-004"
+                                   Style="{StaticResource Caption}"
+                                   FontFamily="InterMedium" />
+                            <Border Grid.Column="1"
+                                    BackgroundColor="#FEE2E2"
+                                    StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 4"
+                                    Padding="8,4">
+                                <Label Text="high"
+                                       FontSize="10"
+                                       FontFamily="InterMedium"
+                                       TextColor="#DC2626" />
+                            </Border>
+                        </Grid>
+                        
+                        <Label Text="Emergency Repair"
+                               Style="{StaticResource BodyLarge}"
+                               FontFamily="InterSemiBold" />
+                        <Label Text="City Hall"
+                               Style="{StaticResource BodyMedium}"
+                               TextColor="{StaticResource TextSecondary}" />
+                        
+                        <BoxView HeightRequest="1" Color="{StaticResource BorderLight}" Margin="0,4" />
+                        
+                        <Grid ColumnDefinitions="Auto,*,Auto">
+                            <HorizontalStackLayout Spacing="8">
+                                <Border WidthRequest="24" HeightRequest="24"
+                                        BackgroundColor="#FEF3C7"
+                                        StrokeThickness="0"
+                                        StrokeShape="RoundRectangle 4">
+                                    <Label Text="⚠️" FontSize="12" 
+                                           HorizontalOptions="Center" VerticalOptions="Center" />
+                                </Border>
+                                <Label Text="pending"
+                                       Style="{StaticResource Caption}"
+                                       TextColor="{StaticResource TextSecondary}"
+                                       VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                            <Label Grid.Column="2" Text="Due: Dec 13, 2024"
+                                   Style="{StaticResource Caption}"
+                                   TextColor="{StaticResource TextSecondary}" />
+                        </Grid>
+                    </VerticalStackLayout>
+                </controls:AppCard>
+                
+                <!-- Placeholder -->
+                <controls:AppCard>
+                    <Border BackgroundColor="{StaticResource BackgroundTertiary}"
+                            Stroke="{StaticResource BorderMedium}"
+                            StrokeThickness="2"
+                            StrokeDashArray="4,4"
+                            StrokeShape="RoundRectangle 8"
+                            Padding="24">
+                        <Label Text="Full job management will be developed in Phase 2"
+                               Style="{StaticResource Caption}"
+                               HorizontalOptions="Center" />
+                    </Border>
+                </controls:AppCard>
+                
+            </VerticalStackLayout>
+        </ScrollView>
+        
+    </Grid>
+    
+</ContentPage>

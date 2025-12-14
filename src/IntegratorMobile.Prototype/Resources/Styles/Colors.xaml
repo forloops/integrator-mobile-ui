@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!-- ============================================
+         Design System Colors
+         Translated from tailwind.config.js
+         ============================================ -->
+
+    <!-- Primary - Indigo scale based on #4338CA -->
+    <Color x:Key="Primary50">#EEEEFF</Color>
+    <Color x:Key="Primary100">#E0E7FF</Color>
+    <Color x:Key="Primary200">#C7D2FE</Color>
+    <Color x:Key="Primary300">#A5B4FC</Color>
+    <Color x:Key="Primary400">#818CF8</Color>
+    <Color x:Key="Primary500">#6366F1</Color>
+    <Color x:Key="Primary600">#4338CA</Color>
+    <Color x:Key="Primary700">#3730A3</Color>
+    <Color x:Key="Primary800">#312E81</Color>
+    <Color x:Key="Primary900">#1E1B4B</Color>
+    <Color x:Key="Primary950">#0F0D29</Color>
+
+    <!-- Slate - Based on #323F4B (header color) -->
+    <Color x:Key="Slate50">#F8FAFC</Color>
+    <Color x:Key="Slate100">#F1F5F9</Color>
+    <Color x:Key="Slate200">#E2E8F0</Color>
+    <Color x:Key="Slate300">#CBD5E1</Color>
+    <Color x:Key="Slate400">#94A3B8</Color>
+    <Color x:Key="Slate500">#64748B</Color>
+    <Color x:Key="Slate600">#475569</Color>
+    <Color x:Key="Slate700">#323F4B</Color>
+    <Color x:Key="Slate800">#1E293B</Color>
+    <Color x:Key="Slate900">#0F172A</Color>
+    <Color x:Key="Slate950">#020617</Color>
+
+    <!-- Semantic Colors -->
+    <Color x:Key="Error">#DC2626</Color>
+    <Color x:Key="ErrorLight">#FEE2E2</Color>
+    <Color x:Key="Success">#16A34A</Color>
+    <Color x:Key="SuccessLight">#DCFCE7</Color>
+    <Color x:Key="Warning">#D97706</Color>
+    <Color x:Key="WarningLight">#FEF3C7</Color>
+    <Color x:Key="Info">#0284C7</Color>
+    <Color x:Key="InfoLight">#E0F2FE</Color>
+
+    <!-- Background Colors -->
+    <Color x:Key="BackgroundPrimary">#FFFFFF</Color>
+    <Color x:Key="BackgroundSecondary">#F8FAFC</Color>
+    <Color x:Key="BackgroundTertiary">#F1F5F9</Color>
+
+    <!-- Text Colors -->
+    <Color x:Key="TextPrimary">#0F172A</Color>
+    <Color x:Key="TextSecondary">#475569</Color>
+    <Color x:Key="TextTertiary">#94A3B8</Color>
+    <Color x:Key="TextInverse">#FFFFFF</Color>
+
+    <!-- Border Colors -->
+    <Color x:Key="BorderLight">#E2E8F0</Color>
+    <Color x:Key="BorderMedium">#CBD5E1</Color>
+    <Color x:Key="BorderDark">#94A3B8</Color>
+
+    <!-- Status Badge Colors -->
+    <Color x:Key="StatusReady">#16A34A</Color>
+    <Color x:Key="StatusInProgress">#0284C7</Color>
+    <Color x:Key="StatusCompleted">#16A34A</Color>
+    <Color x:Key="StatusNeedToReturn">#D97706</Color>
+    <Color x:Key="StatusScheduled">#64748B</Color>
+    <Color x:Key="StatusEnRoute">#0284C7</Color>
+
+</ResourceDictionary>

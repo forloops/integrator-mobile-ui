@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IntegratorMobile.Views.Auth.LoginPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#323F4B">
+    
+    <ScrollView>
+        <VerticalStackLayout Padding="24"
+                             Spacing="24"
+                             VerticalOptions="Center">
+            
+            <!-- Back Button -->
+            <Button Text="← Back"
+                    TextColor="White"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="Start"
+                    Clicked="OnBackClicked" />
+            
+            <!-- Title -->
+            <Label Text="Login"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   HorizontalOptions="Center" />
+            
+            <!-- Card -->
+            <Border BackgroundColor="White"
+                    Stroke="#E2E8F0"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 12"
+                    Padding="24">
+                <Border.Shadow>
+                    <Shadow Brush="#0F172A" Offset="0,2" Radius="8" Opacity="0.08" />
+                </Border.Shadow>
+                
+                <VerticalStackLayout Spacing="20">
+                    
+                    <!-- Instructions -->
+                    <Label Text="Please login with Microsoft or use manual login"
+                           TextColor="#64748B"
+                           HorizontalTextAlignment="Center" />
+                    
+                    <!-- Microsoft Login Button -->
+                    <Button Text="LOGIN WITH MICROSOFT"
+                            BackgroundColor="#2F2F2F"
+                            TextColor="White"
+                            CornerRadius="8"
+                            HeightRequest="48"
+                            Clicked="OnMicrosoftLoginClicked" />
+                    
+                    <!-- Divider -->
+                    <Label Text="— or —"
+                           TextColor="#94A3B8"
+                           HorizontalOptions="Center" />
+                    
+                    <!-- Manual Login Button -->
+                    <Button Text="MANUAL LOGIN"
+                            BackgroundColor="White"
+                            TextColor="#4338CA"
+                            BorderColor="#4338CA"
+                            BorderWidth="2"
+                            CornerRadius="8"
+                            HeightRequest="48"
+                            Clicked="OnManualLoginClicked" />
+                    
+                </VerticalStackLayout>
+            </Border>
+            
+        </VerticalStackLayout>
+    </ScrollView>
+    
+</ContentPage>

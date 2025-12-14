@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:IntegratorMobile.ViewModels"
+             xmlns:models="clr-namespace:IntegratorMobile.MockData.Models;assembly=IntegratorMobile.MockData"
+             xmlns:controls="clr-namespace:IntegratorMobile.UI.Controls;assembly=IntegratorMobile.UI"
+             x:Class="IntegratorMobile.Views.Appointments.AppointmentsPage"
+             x:DataType="vm:AppointmentsPageViewModel"
+             Title="My Appointments"
+             BackgroundColor="{StaticResource BackgroundSecondary}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Back" Command="{Binding GoBackCommand}" />
+    </ContentPage.ToolbarItems>
+    
+    <Grid RowDefinitions="Auto,*">
+        
+        <!-- Tab Header -->
+        <Grid Grid.Row="0" 
+              ColumnDefinitions="*,*,*"
+              BackgroundColor="{StaticResource Slate700}"
+              Padding="0,8">
+            
+            <Button Text="Unresolved"
+                    TextColor="{Binding SelectedTabIndex, Converter={StaticResource TabSelectedConverter}, ConverterParameter=0}"
+                    BackgroundColor="Transparent"
+                    FontFamily="InterSemiBold"
+                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:AppointmentsPageViewModel}}, Path=SetTabCommand}"
+                    CommandParameter="0" />
+            
+            <Button Grid.Column="1"
+                    Text="Today"
+                    TextColor="{Binding SelectedTabIndex, Converter={StaticResource TabSelectedConverter}, ConverterParameter=1}"
+                    BackgroundColor="Transparent"
+                    FontFamily="InterSemiBold"
+                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:AppointmentsPageViewModel}}, Path=SetTabCommand}"
+                    CommandParameter="1" />
+            
+            <Button Grid.Column="2"
+                    Text="Future"
+                    TextColor="{Binding SelectedTabIndex, Converter={StaticResource TabSelectedConverter}, ConverterParameter=2}"
+                    BackgroundColor="Transparent"
+                    FontFamily="InterSemiBold"
+                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:AppointmentsPageViewModel}}, Path=SetTabCommand}"
+                    CommandParameter="2" />
+        </Grid>
+        
+        <!-- Tab Content -->
+        <Grid Grid.Row="1">
+            
+            <!-- Unresolved Tab -->
+            <ScrollView IsVisible="{Binding SelectedTabIndex, Converter={StaticResource IntEqualConverter}, ConverterParameter=0}">
+                <VerticalStackLayout Padding="16" Spacing="12">
+                    
+                    <!-- Warning Banner -->
+                    <Border BackgroundColor="{StaticResource ErrorLight}"
+                            StrokeThickness="0"
+                            StrokeShape="RoundRectangle 8"
+                            Padding="12"
+                            IsVisible="{Binding HasUnresolvedAppointments}">
+                        <HorizontalStackLayout Spacing="12">
+                            <Label Text="⚠️" FontSize="20" VerticalOptions="Center" />
+                            <Label Text="You have incomplete appointments that require attention"
+                                   TextColor="{StaticResource Error}"
+                                   FontFamily="InterMedium"
+                                   VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                    </Border>
+                    
+                    <!-- Empty State -->
+                    <Label Text="No unresolved appointments"
+                           Style="{StaticResource BodyLarge}"
+                           HorizontalOptions="Center"
+                           Margin="0,40"
+                           IsVisible="{Binding HasUnresolvedAppointments, Converter={StaticResource InverseBoolConverter}}" />
+                    
+                    <!-- Appointment List -->
+                    <CollectionView ItemsSource="{Binding UnresolvedAppointments}"
+                                   SelectionMode="Single"
+                                   SelectionChangedCommand="{Binding SelectAppointmentCommand}"
+                                   SelectionChangedCommandParameter="{Binding SelectedItem, Source={RelativeSource Self}}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:Appointment">
+                                <controls:AppCard Margin="0,0,0,8">
+                                    <Grid ColumnDefinitions="6,*" ColumnSpacing="12">
+                                        <BoxView BackgroundColor="{StaticResource Warning}"
+                                                 WidthRequest="6"
+                                                 VerticalOptions="Fill" />
+                                        <VerticalStackLayout Grid.Column="1" Spacing="4" Padding="8">
+                                            <Label Text="{Binding CustomerName}"
+                                                   Style="{StaticResource HeadingSmall}" />
+                                            <Label Text="{Binding ServiceJobType}"
+                                                   Style="{StaticResource Caption}"
+                                                   TextColor="{StaticResource Primary600}" />
+                                            <Label Text="{Binding JobNumber, StringFormat='Job #{0}'}"
+                                                   Style="{StaticResource BodySmall}" />
+                                            <Label Text="{Binding Location.Address}"
+                                                   Style="{StaticResource BodySmall}" />
+                                            <Label Text="{Binding Location.CityStateZip}"
+                                                   Style="{StaticResource Caption}" />
+                                            <Label Text="{Binding ScheduledStart, StringFormat='{0:dddd, MMMM d @ h:mm tt}'}"
+                                                   Style="{StaticResource BodySmall}"
+                                                   TextColor="{StaticResource TextSecondary}" />
+                                            <controls:AppBadge Text="{Binding StatusDisplay}"
+                                                              BadgeType="Warning"
+                                                              Margin="0,4,0,0" />
+                                        </VerticalStackLayout>
+                                    </Grid>
+                                </controls:AppCard>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </ScrollView>
+            
+            <!-- Today Tab -->
+            <ScrollView IsVisible="{Binding SelectedTabIndex, Converter={StaticResource IntEqualConverter}, ConverterParameter=1}">
+                <VerticalStackLayout Padding="16" Spacing="12">
+                    
+                    <!-- Empty State -->
+                    <Label Text="No appointments scheduled for today"
+                           Style="{StaticResource BodyLarge}"
+                           HorizontalOptions="Center"
+                           Margin="0,40"
+                           IsVisible="{Binding HasTodayAppointments, Converter={StaticResource InverseBoolConverter}}" />
+                    
+                    <!-- Appointment List -->
+                    <CollectionView ItemsSource="{Binding TodayAppointments}"
+                                   SelectionMode="Single"
+                                   SelectionChangedCommand="{Binding SelectAppointmentCommand}"
+                                   SelectionChangedCommandParameter="{Binding SelectedItem, Source={RelativeSource Self}}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:Appointment">
+                                <controls:AppCard Margin="0,0,0,8">
+                                    <Grid ColumnDefinitions="6,*" ColumnSpacing="12">
+                                        <BoxView BackgroundColor="{StaticResource Primary600}"
+                                                 WidthRequest="6"
+                                                 VerticalOptions="Fill" />
+                                        <VerticalStackLayout Grid.Column="1" Spacing="4" Padding="8">
+                                            <Label Text="{Binding CustomerName}"
+                                                   Style="{StaticResource HeadingSmall}" />
+                                            <Label Text="{Binding ServiceJobType}"
+                                                   Style="{StaticResource Caption}"
+                                                   TextColor="{StaticResource Primary600}" />
+                                            <Label Text="{Binding JobNumber, StringFormat='Job #{0}'}"
+                                                   Style="{StaticResource BodySmall}" />
+                                            <Label Text="{Binding Location.Address}"
+                                                   Style="{StaticResource BodySmall}" />
+                                            <Label Text="{Binding Location.CityStateZip}"
+                                                   Style="{StaticResource Caption}" />
+                                            <Label Text="{Binding ScheduledStart, StringFormat='{0:dddd, MMMM d @ h:mm tt}'}"
+                                                   Style="{StaticResource BodySmall}"
+                                                   TextColor="{StaticResource TextSecondary}" />
+                                            <controls:AppBadge Text="{Binding StatusDisplay}"
+                                                              BadgeType="Scheduled"
+                                                              Margin="0,4,0,0" />
+                                        </VerticalStackLayout>
+                                    </Grid>
+                                </controls:AppCard>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    
+                    <!-- Done for Day Button -->
+                    <controls:AppButton Text="I'M DONE FOR THE DAY"
+                                       Variant="Secondary"
+                                       IsBlock="True"
+                                       Command="{Binding DoneForDayCommand}"
+                                       IsVisible="{Binding HasTodayAppointments}"
+                                       Margin="0,16,0,0" />
+                </VerticalStackLayout>
+            </ScrollView>
+            
+            <!-- Future Tab -->
+            <ScrollView IsVisible="{Binding SelectedTabIndex, Converter={StaticResource IntEqualConverter}, ConverterParameter=2}">
+                <VerticalStackLayout Padding="16" Spacing="12">
+                    
+                    <!-- Empty State -->
+                    <Label Text="No upcoming appointments"
+                           Style="{StaticResource BodyLarge}"
+                           HorizontalOptions="Center"
+                           Margin="0,40"
+                           IsVisible="{Binding HasFutureAppointments, Converter={StaticResource InverseBoolConverter}}" />
+                    
+                    <!-- Appointment List -->
+                    <CollectionView ItemsSource="{Binding FutureAppointments}"
+                                   SelectionMode="Single"
+                                   SelectionChangedCommand="{Binding SelectAppointmentCommand}"
+                                   SelectionChangedCommandParameter="{Binding SelectedItem, Source={RelativeSource Self}}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:Appointment">
+                                <controls:AppCard Margin="0,0,0,8">
+                                    <Grid ColumnDefinitions="6,*" ColumnSpacing="12">
+                                        <BoxView BackgroundColor="{StaticResource Slate400}"
+                                                 WidthRequest="6"
+                                                 VerticalOptions="Fill" />
+                                        <VerticalStackLayout Grid.Column="1" Spacing="4" Padding="8">
+                                            <Label Text="{Binding CustomerName}"
+                                                   Style="{StaticResource HeadingSmall}" />
+                                            <Label Text="{Binding ServiceJobType}"
+                                                   Style="{StaticResource Caption}"
+                                                   TextColor="{StaticResource Primary600}" />
+                                            <Label Text="{Binding JobNumber, StringFormat='Job #{0}'}"
+                                                   Style="{StaticResource BodySmall}" />
+                                            <Label Text="{Binding Location.Address}"
+                                                   Style="{StaticResource BodySmall}" />
+                                            <Label Text="{Binding Location.CityStateZip}"
+                                                   Style="{StaticResource Caption}" />
+                                            <Label Text="{Binding ScheduledStart, StringFormat='{0:dddd, MMMM d @ h:mm tt}'}"
+                                                   Style="{StaticResource BodySmall}"
+                                                   TextColor="{StaticResource TextSecondary}" />
+                                            <controls:AppBadge Text="{Binding StatusDisplay}"
+                                                              BadgeType="Scheduled"
+                                                              Margin="0,4,0,0" />
+                                        </VerticalStackLayout>
+                                    </Grid>
+                                </controls:AppCard>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </ScrollView>
+            
+        </Grid>
+        
+        <!-- Loading -->
+        <ActivityIndicator Grid.RowSpan="2"
+                          IsRunning="{Binding IsBusy}"
+                          IsVisible="{Binding IsBusy}"
+                          Color="{StaticResource Primary600}"
+                          VerticalOptions="Center"
+                          HorizontalOptions="Center" />
+    </Grid>
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:TabSelectedConverter x:Key="TabSelectedConverter" 
+                                        xmlns:local="clr-namespace:IntegratorMobile.Converters" />
+            <local:IntEqualConverter x:Key="IntEqualConverter" 
+                                     xmlns:local="clr-namespace:IntegratorMobile.Converters" />
+            <local:InverseBoolConverter x:Key="InverseBoolConverter" 
+                                        xmlns:local="clr-namespace:IntegratorMobile.Converters" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+</ContentPage>

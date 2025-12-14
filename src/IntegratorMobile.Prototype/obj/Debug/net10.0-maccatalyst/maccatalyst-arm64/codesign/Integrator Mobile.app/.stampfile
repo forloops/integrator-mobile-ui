@@ -1,0 +1,1 @@
+-v --force --timestamp=none --sign - --entitlements /Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.Prototype/obj/Debug/net10.0-maccatalyst/maccatalyst-arm64/Entitlements.xcent /Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.Prototype/bin/Debug/net10.0-maccatalyst/maccatalyst-arm64/Integrator Mobile.app

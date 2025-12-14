@@ -1,0 +1,14 @@
+/Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.UI/bin/Debug/net10.0-ios/IntegratorMobile.UI.dll
+/Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.UI/bin/Debug/net10.0-ios/IntegratorMobile.UI.pdb
+/Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.UI/obj/Debug/net10.0-ios/_ProcessedBundleResourcesPath.items
+/Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.UI/obj/Debug/net10.0-ios/_ProcessedContentPath.items
+/Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.UI/obj/Debug/net10.0-ios/IntegratorMobile.UI.csproj.AssemblyReference.cache
+/Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.UI/obj/Debug/net10.0-ios/IntegratorMobile.UI.GeneratedMSBuildEditorConfig.editorconfig
+/Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.UI/obj/Debug/net10.0-ios/IntegratorMobile.UI.AssemblyInfoInputs.cache
+/Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.UI/obj/Debug/net10.0-ios/IntegratorMobile.UI.AssemblyInfo.cs
+/Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.UI/obj/Debug/net10.0-ios/IntegratorMobile.UI.csproj.CoreCompileInputs.cache
+/Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.UI/obj/Debug/net10.0-ios/XamlC.stamp
+/Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.UI/obj/Debug/net10.0-ios/IntegratorMobile.UI.dll
+/Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.UI/obj/Debug/net10.0-ios/refint/IntegratorMobile.UI.dll
+/Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.UI/obj/Debug/net10.0-ios/IntegratorMobile.UI.pdb
+/Users/overlord/Projects/Integrator-Mobile-UI/new-mobile-app/src/IntegratorMobile.UI/obj/Debug/net10.0-ios/ref/IntegratorMobile.UI.dll

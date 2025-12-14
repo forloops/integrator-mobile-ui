@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:IntegratorMobile.ViewModels"
+             xmlns:controls="clr-namespace:IntegratorMobile.UI.Controls;assembly=IntegratorMobile.UI"
+             x:Class="IntegratorMobile.Views.Auth.IdentifyPage"
+             x:DataType="vm:IdentifyPageViewModel"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#323F4B">
+    
+    <Grid>
+        <!-- Background Image Placeholder -->
+        <BoxView Color="#323F4B" />
+        
+        <ScrollView>
+            <VerticalStackLayout Padding="24"
+                                 Spacing="24"
+                                 VerticalOptions="Center">
+                
+                <!-- Logo -->
+                <Image Source="integrator_logo.png"
+                       HeightRequest="80"
+                       Aspect="AspectFit"
+                       HorizontalOptions="Center"
+                       Margin="0,0,0,20" />
+                
+                <!-- Card -->
+                <controls:AppCard CardPadding="24">
+                    <VerticalStackLayout Spacing="20">
+                        
+                        <!-- Title -->
+                        <Label Text="Welcome"
+                               Style="{StaticResource HeadingLarge}"
+                               HorizontalOptions="Center" />
+                        
+                        <!-- Instructions -->
+                        <Label Text="Enter your company identifier to get started"
+                               Style="{StaticResource BodyMedium}"
+                               HorizontalTextAlignment="Center"
+                               TextColor="{StaticResource TextSecondary}" />
+                        
+                        <!-- Input -->
+                        <controls:AppInput Label="Company Identifier"
+                                          Placeholder="e.g., crowther"
+                                          Text="{Binding CompanyIdentifier}"
+                                          HasError="{Binding ShowError}"
+                                          ErrorMessage="{Binding ErrorMessage}"
+                                          ReturnType="Go"
+                                          Completed="OnEntryCompleted" />
+                        
+                        <!-- Continue Button -->
+                        <controls:AppButton Text="CONTINUE"
+                                           Variant="Primary"
+                                           IsBlock="True"
+                                           IsLoading="{Binding IsBusy}"
+                                           Command="{Binding ContinueCommand}" />
+                        
+                        <!-- Help Text -->
+                        <Label Text="Don't know your company identifier? Contact your administrator."
+                               Style="{StaticResource Caption}"
+                               HorizontalTextAlignment="Center" />
+                        
+                    </VerticalStackLayout>
+                </controls:AppCard>
+                
+                <!-- Version -->
+                <Label Text="Version 1.0.0 (Prototype)"
+                       FontSize="12"
+                       TextColor="#94A3B8"
+                       HorizontalOptions="Center"
+                       Margin="0,20,0,0" />
+                
+            </VerticalStackLayout>
+        </ScrollView>
+        
+        <!-- Loading Overlay -->
+        <Grid IsVisible="{Binding IsBusy}"
+              BackgroundColor="#80000000">
+            <ActivityIndicator IsRunning="{Binding IsBusy}"
+                              Color="{StaticResource Primary500}"
+                              VerticalOptions="Center"
+                              HorizontalOptions="Center" />
+        </Grid>
+    </Grid>
+    
+</ContentPage>

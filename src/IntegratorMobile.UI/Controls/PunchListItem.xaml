@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IntegratorMobile.UI.Controls.PunchListItem"
+             x:Name="this">
+    
+    <Border BackgroundColor="White"
+            StrokeThickness="0"
+            Padding="16,12">
+        <Border.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OnTapped" />
+        </Border.GestureRecognizers>
+        
+        <Grid ColumnDefinitions="40,*,Auto" ColumnSpacing="12">
+            
+            <!-- Status Icon -->
+            <Border x:Name="StatusIcon"
+                    WidthRequest="40"
+                    HeightRequest="40"
+                    StrokeShape="RoundRectangle 20"
+                    StrokeThickness="2"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
+                <Label x:Name="IconLabel"
+                       FontFamily="InterBold"
+                       FontSize="16"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" />
+            </Border>
+            
+            <!-- Content -->
+            <VerticalStackLayout Grid.Column="1" 
+                                 Spacing="2"
+                                 VerticalOptions="Center">
+                <Label x:Name="TitleLabel"
+                       Text="{Binding Source={x:Reference this}, Path=Title}"
+                       FontFamily="InterSemiBold"
+                       FontSize="16"
+                       TextColor="#0F172A" />
+                <Label x:Name="DescriptionLabel"
+                       Text="{Binding Source={x:Reference this}, Path=Description}"
+                       FontFamily="InterRegular"
+                       FontSize="13"
+                       TextColor="#64748B"
+                       LineBreakMode="TailTruncation"
+                       MaxLines="2" />
+            </VerticalStackLayout>
+            
+            <!-- Chevron -->
+            <Label Grid.Column="2"
+                   Text="›"
+                   FontSize="24"
+                   TextColor="#94A3B8"
+                   VerticalOptions="Center" />
+        </Grid>
+    </Border>
+    
+</ContentView>

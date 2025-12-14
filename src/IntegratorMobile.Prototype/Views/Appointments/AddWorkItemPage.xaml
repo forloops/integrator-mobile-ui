@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:IntegratorMobile.UI.Controls;assembly=IntegratorMobile.UI"
+             x:Class="IntegratorMobile.Views.Appointments.AddWorkItemPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{StaticResource BackgroundSecondary}">
+    
+    <Grid RowDefinitions="Auto,*">
+        
+        <!-- Header -->
+        <Grid Grid.Row="0" BackgroundColor="{StaticResource Slate700}" Padding="16,12">
+            <Grid ColumnDefinitions="Auto,*">
+                <Button Text="‹ Back"
+                        TextColor="White"
+                        BackgroundColor="Transparent"
+                        FontFamily="InterSemiBold"
+                        Clicked="OnBackClicked" />
+                <VerticalStackLayout Grid.Column="1" Margin="8,0,0,0">
+                    <Label Text="Add New Work Item"
+                           FontSize="18"
+                           FontFamily="InterSemiBold"
+                           TextColor="White" />
+                    <Label x:Name="PropertyName" Text="Property Name"
+                           FontSize="14"
+                           TextColor="White"
+                           Opacity="0.7" />
+                </VerticalStackLayout>
+            </Grid>
+        </Grid>
+        
+        <!-- Main Content -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="16" Spacing="20">
+                
+                <!-- Work Item Type Dropdown -->
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Work Item Type"
+                           Style="{StaticResource BodyMedium}"
+                           FontFamily="InterSemiBold">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Work Item Type " />
+                                <Span Text="*" TextColor="{StaticResource Error}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Border BackgroundColor="White"
+                            Stroke="{StaticResource BorderMedium}"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 8"
+                            Padding="12,0">
+                        <Picker x:Name="TypePicker"
+                                Title="Select Work Item Type"
+                                FontFamily="InterRegular"
+                                FontSize="16"
+                                TextColor="{StaticResource TextPrimary}"
+                                TitleColor="{StaticResource TextTertiary}"
+                                SelectedIndexChanged="OnTypeSelected">
+                            <Picker.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>Inspection</x:String>
+                                    <x:String>Survey</x:String>
+                                    <x:String>Estimate</x:String>
+                                    <x:String>Adhoc Repair</x:String>
+                                    <x:String>Line Item Repair</x:String>
+                                </x:Array>
+                            </Picker.ItemsSource>
+                        </Picker>
+                    </Border>
+                </VerticalStackLayout>
+                
+                <!-- Building Dropdown -->
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Building"
+                           Style="{StaticResource BodyMedium}"
+                           FontFamily="InterSemiBold">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Building " />
+                                <Span Text="*" TextColor="{StaticResource Error}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Border BackgroundColor="White"
+                            Stroke="{StaticResource BorderMedium}"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 8"
+                            Padding="12,0">
+                        <Grid ColumnDefinitions="Auto,*">
+                            <Label Text="🏢" FontSize="18" VerticalOptions="Center" Margin="0,0,8,0" />
+                            <Picker x:Name="BuildingPicker"
+                                    Grid.Column="1"
+                                    Title="Select Building"
+                                    FontFamily="InterRegular"
+                                    FontSize="16"
+                                    TextColor="{StaticResource TextPrimary}"
+                                    TitleColor="{StaticResource TextTertiary}"
+                                    SelectedIndexChanged="OnBuildingSelected">
+                                <Picker.ItemsSource>
+                                    <x:Array Type="{x:Type x:String}">
+                                        <x:String>Main Building - 3 systems</x:String>
+                                        <x:String>Warehouse - 2 systems</x:String>
+                                        <x:String>Office Annex - 1 system</x:String>
+                                    </x:Array>
+                                </Picker.ItemsSource>
+                            </Picker>
+                        </Grid>
+                    </Border>
+                </VerticalStackLayout>
+                
+                <!-- System Dropdown -->
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="System"
+                           Style="{StaticResource BodyMedium}"
+                           FontFamily="InterSemiBold">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="System " />
+                                <Span Text="*" TextColor="{StaticResource Error}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Border BackgroundColor="White"
+                            Stroke="{StaticResource BorderMedium}"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 8"
+                            Padding="12,0">
+                        <Picker x:Name="SystemPicker"
+                                Title="Select System"
+                                FontFamily="InterRegular"
+                                FontSize="16"
+                                TextColor="{StaticResource TextPrimary}"
+                                TitleColor="{StaticResource TextTertiary}"
+                                IsEnabled="False"
+                                SelectedIndexChanged="OnSystemSelected">
+                            <Picker.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>HVAC System A</x:String>
+                                    <x:String>HVAC System B</x:String>
+                                    <x:String>Electrical Panel</x:String>
+                                </x:Array>
+                            </Picker.ItemsSource>
+                        </Picker>
+                    </Border>
+                </VerticalStackLayout>
+                
+                <!-- Title Input -->
+                <controls:AppInput x:Name="TitleInput"
+                                  Label="Title"
+                                  Placeholder="Enter work item title" />
+                
+                <!-- Description Input -->
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Description"
+                           Style="{StaticResource BodyMedium}"
+                           FontFamily="InterSemiBold" />
+                    <Border BackgroundColor="White"
+                            Stroke="{StaticResource BorderMedium}"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 8"
+                            Padding="12">
+                        <Editor x:Name="DescriptionEditor"
+                                Placeholder="Enter description (optional)"
+                                FontFamily="InterRegular"
+                                FontSize="16"
+                                TextColor="{StaticResource TextPrimary}"
+                                PlaceholderColor="{StaticResource TextTertiary}"
+                                HeightRequest="80"
+                                AutoSize="TextChanges" />
+                    </Border>
+                </VerticalStackLayout>
+                
+                <!-- Before Photos Section -->
+                <VerticalStackLayout Spacing="12">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label Text="Before Photos"
+                               Style="{StaticResource BodyMedium}"
+                               FontFamily="InterSemiBold">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Before Photos " />
+                                    <Span Text="*" TextColor="{StaticResource Error}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Grid.Column="1" Text="At least 1 required"
+                               Style="{StaticResource Caption}" />
+                    </Grid>
+                    
+                    <!-- Photo Grid -->
+                    <FlexLayout x:Name="PhotoGrid" 
+                                Wrap="Wrap" 
+                                Direction="Row"
+                                JustifyContent="Start">
+                        
+                        <!-- Add Photo Button -->
+                        <Border WidthRequest="80" HeightRequest="80"
+                                BackgroundColor="White"
+                                Stroke="{StaticResource BorderMedium}"
+                                StrokeThickness="2"
+                                StrokeDashArray="4,4"
+                                StrokeShape="RoundRectangle 8"
+                                Margin="0,0,8,8">
+                            <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="4">
+                                <Label Text="📷" FontSize="24" HorizontalOptions="Center" />
+                                <Label Text="Add" Style="{StaticResource Caption}" HorizontalOptions="Center" />
+                            </VerticalStackLayout>
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnAddPhotoClicked" />
+                            </Border.GestureRecognizers>
+                        </Border>
+                        
+                    </FlexLayout>
+                    
+                    <Label x:Name="PhotoError" Text="At least one before photo is required"
+                           Style="{StaticResource Caption}"
+                           TextColor="{StaticResource Error}"
+                           IsVisible="True" />
+                </VerticalStackLayout>
+                
+                <!-- Action Buttons -->
+                <VerticalStackLayout Spacing="12" Margin="0,16,0,0">
+                    <controls:AppButton x:Name="SaveButton"
+                                       Text="SAVE"
+                                       Variant="Primary"
+                                       IsBlock="True"
+                                       IsEnabled="False"
+                                       Clicked="OnSaveClicked" />
+                    <controls:AppButton Text="CANCEL"
+                                       Variant="Outline"
+                                       IsBlock="True"
+                                       Clicked="OnCancelClicked" />
+                </VerticalStackLayout>
+                
+            </VerticalStackLayout>
+        </ScrollView>
+        
+    </Grid>
+    
+</ContentPage>

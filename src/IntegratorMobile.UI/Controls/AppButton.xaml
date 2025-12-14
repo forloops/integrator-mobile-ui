@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IntegratorMobile.UI.Controls.AppButton"
+             x:Name="this">
+    
+    <Button x:Name="InnerButton"
+            Text="{Binding Source={x:Reference this}, Path=Text}"
+            Command="{Binding Source={x:Reference this}, Path=Command}"
+            CommandParameter="{Binding Source={x:Reference this}, Path=CommandParameter}"
+            IsEnabled="{Binding Source={x:Reference this}, Path=IsEnabled}"
+            HorizontalOptions="Fill"
+            Clicked="OnButtonClicked" />
+    
+</ContentView>

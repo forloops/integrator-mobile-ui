@@ -9,6 +9,11 @@ namespace IntegratorMobile.ViewModels;
 public partial class AppointmentsPageViewModel : BaseViewModel
 {
     private readonly IAppointmentService _appointmentService;
+    
+    // Original lists for filtering
+    private List<Appointment> _allTodayAppointments = new();
+    private List<Appointment> _allUnresolvedAppointments = new();
+    private List<Appointment> _allFutureAppointments = new();
 
     [ObservableProperty]
     private ObservableCollection<Appointment> _todayAppointments = new();
@@ -30,11 +35,22 @@ public partial class AppointmentsPageViewModel : BaseViewModel
 
     [ObservableProperty]
     private bool _hasFutureAppointments;
+    
+    [ObservableProperty]
+    private bool _isSearchVisible;
+    
+    [ObservableProperty]
+    private string _searchQuery = string.Empty;
 
     public AppointmentsPageViewModel(IAppointmentService appointmentService)
     {
         _appointmentService = appointmentService;
         Title = "My Appointments";
+    }
+    
+    partial void OnSearchQueryChanged(string value)
+    {
+        FilterAppointments(value);
     }
 
     [RelayCommand]
@@ -44,20 +60,84 @@ public partial class AppointmentsPageViewModel : BaseViewModel
         {
             // Load today's appointments
             var today = await _appointmentService.GetTodayAppointments();
+            _allTodayAppointments = today;
             TodayAppointments = new ObservableCollection<Appointment>(today);
             HasTodayAppointments = today.Any();
 
             // Load unresolved (past incomplete)
             var past = await _appointmentService.GetPastAppointments();
             var unresolved = past.Where(a => a.Status != AppointmentStatus.Completed).ToList();
+            _allUnresolvedAppointments = unresolved;
             UnresolvedAppointments = new ObservableCollection<Appointment>(unresolved);
             HasUnresolvedAppointments = unresolved.Any();
 
             // Load future
             var future = await _appointmentService.GetFutureAppointments();
+            _allFutureAppointments = future;
             FutureAppointments = new ObservableCollection<Appointment>(future);
             HasFutureAppointments = future.Any();
         });
+    }
+    
+    [RelayCommand]
+    private void ToggleSearch()
+    {
+        IsSearchVisible = !IsSearchVisible;
+        if (!IsSearchVisible)
+        {
+            SearchQuery = string.Empty;
+        }
+    }
+    
+    [RelayCommand]
+    private void ClearSearch()
+    {
+        SearchQuery = string.Empty;
+        IsSearchVisible = false;
+    }
+    
+    [RelayCommand]
+    private void Search()
+    {
+        FilterAppointments(SearchQuery);
+    }
+    
+    private void FilterAppointments(string query)
+    {
+        if (string.IsNullOrWhiteSpace(query))
+        {
+            // Reset to original lists
+            TodayAppointments = new ObservableCollection<Appointment>(_allTodayAppointments);
+            UnresolvedAppointments = new ObservableCollection<Appointment>(_allUnresolvedAppointments);
+            FutureAppointments = new ObservableCollection<Appointment>(_allFutureAppointments);
+        }
+        else
+        {
+            var lowerQuery = query.ToLowerInvariant();
+            
+            TodayAppointments = new ObservableCollection<Appointment>(
+                _allTodayAppointments.Where(a => MatchesSearch(a, lowerQuery)));
+            
+            UnresolvedAppointments = new ObservableCollection<Appointment>(
+                _allUnresolvedAppointments.Where(a => MatchesSearch(a, lowerQuery)));
+            
+            FutureAppointments = new ObservableCollection<Appointment>(
+                _allFutureAppointments.Where(a => MatchesSearch(a, lowerQuery)));
+        }
+        
+        HasTodayAppointments = TodayAppointments.Any();
+        HasUnresolvedAppointments = UnresolvedAppointments.Any();
+        HasFutureAppointments = FutureAppointments.Any();
+    }
+    
+    private static bool MatchesSearch(Appointment appointment, string query)
+    {
+        return appointment.CustomerName.ToLowerInvariant().Contains(query) ||
+               appointment.SiteName.ToLowerInvariant().Contains(query) ||
+               appointment.JobNumber.ToLowerInvariant().Contains(query) ||
+               appointment.Location.Address.ToLowerInvariant().Contains(query) ||
+               appointment.Location.City.ToLowerInvariant().Contains(query) ||
+               appointment.ServiceJobType.ToLowerInvariant().Contains(query);
     }
 
     [RelayCommand]

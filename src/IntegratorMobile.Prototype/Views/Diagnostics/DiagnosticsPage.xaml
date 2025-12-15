@@ -152,18 +152,28 @@
                                    IsBlock="True" />
             </VerticalStackLayout>
             
-            <!-- Placeholder -->
+            <!-- Storage Info Card -->
             <controls:AppCard>
-                <Border BackgroundColor="{StaticResource BackgroundTertiary}"
-                        Stroke="{StaticResource BorderMedium}"
-                        StrokeThickness="2"
-                        StrokeDashArray="4,4"
-                        StrokeShape="RoundRectangle 8"
-                        Padding="24">
-                    <Label Text="Full diagnostics will be developed in Phase 2"
-                           Style="{StaticResource Caption}"
-                           HorizontalOptions="Center" />
-                </Border>
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Storage"
+                           Style="{StaticResource HeadingSmall}" />
+                    
+                    <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="*,Auto" RowSpacing="8">
+                        <Label Grid.Row="0" Grid.Column="0" Text="Photos Pending Upload" 
+                               Style="{StaticResource BodyMedium}" TextColor="{StaticResource TextSecondary}" />
+                        <Label Grid.Row="0" Grid.Column="1" Text="0" 
+                               Style="{StaticResource BodyMedium}" FontFamily="InterMedium" />
+                        
+                        <Label Grid.Row="1" Grid.Column="0" Text="Cache Size" 
+                               Style="{StaticResource BodyMedium}" TextColor="{StaticResource TextSecondary}" />
+                        <Label Grid.Row="1" Grid.Column="1" Text="24.5 MB" 
+                               Style="{StaticResource BodyMedium}" FontFamily="InterMedium" />
+                    </Grid>
+                    
+                    <controls:AppButton Text="Clear Cache"
+                                       Variant="Outline"
+                                       IsBlock="True" />
+                </VerticalStackLayout>
             </controls:AppCard>
             
         </VerticalStackLayout>

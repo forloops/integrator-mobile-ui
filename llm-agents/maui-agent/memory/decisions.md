@@ -150,10 +150,53 @@
   - Event aggregator
 - **Status:** Monitoring complexity
 
-## Technical Debt
+### MAUI-011: Search/Filter Implementation
+- **Date:** 2024-12-15
+- **Decision:** Real-time filtering with local storage
+- **Implementation:**
+  ```csharp
+  [ObservableProperty]
+  private string _searchQuery = string.Empty;
+  
+  partial void OnSearchQueryChanged(string value) => FilterAppointments(value);
+  ```
+- **Rationale:**
+  - Immediate feedback as user types
+  - No server round-trip for prototype
+  - Filters across customer, site, job number, address
+- **Trade-offs:** Memory usage for storing unfiltered lists
 
-1. **Missing Unit Tests** - ViewModels need test coverage
+### MAUI-012: Custom Header Pattern
+- **Date:** 2024-12-15
+- **Decision:** Inline custom header with Shell.NavBarIsVisible="False"
+- **Pattern:**
+  ```xml
+  <ContentPage Shell.NavBarIsVisible="False">
+    <Grid RowDefinitions="Auto,*">
+      <!-- Custom Header -->
+      <Grid Row="0" BackgroundColor="{StaticResource Slate700}">
+        <Button Text="☰" Clicked="OnMenuClicked" />
+        <Label Text="Page Title" />
+        <Button Text="🔍" Command="{Binding ToggleSearchCommand}" />
+      </Grid>
+      <!-- Content -->
+    </Grid>
+  </ContentPage>
+  ```
+- **Rationale:** Full control over header appearance, matches Vue design
+
+### MAUI-013: AppBadge Extended Types
+- **Date:** 2024-12-15
+- **Decision:** Extended BadgeType enum with all status variants
+- **Types Added:**
+  - Primary, OnSite, Cancelled
+  - Status-specific: Ready, InProgress, Completed, NeedToReturn, Scheduled, EnRoute
+- **Rationale:** Direct mapping to appointment/work item statuses
+
+## Technical Debt (Updated)
+
+1. ~~**Missing Unit Tests**~~ - ✅ Comprehensive test suite created
 2. **Hardcoded Strings** - Should use resources for localization
-3. **Photo Capture Mock** - Needs real implementation
-4. **Error Handling** - Needs comprehensive try/catch
-5. **Loading States** - Some pages missing busy indicators
+3. **Photo Capture Mock** - Needs real implementation for production
+4. **Error Handling** - Needs comprehensive try/catch for production
+5. **Loading States** - Verified on all async pages

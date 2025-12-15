@@ -20,4 +20,12 @@ public partial class AppointmentsPage : ContentPage
         if (_viewModel != null)
             await _viewModel.LoadAppointmentsCommand.ExecuteAsync(null);
     }
+    
+    private async void OnMenuClicked(object? sender, EventArgs e)
+    {
+        if (Shell.Current.FlyoutIsPresented)
+            Shell.Current.FlyoutIsPresented = false;
+        else
+            Shell.Current.FlyoutIsPresented = true;
+    }
 }

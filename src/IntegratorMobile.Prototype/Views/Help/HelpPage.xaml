@@ -176,19 +176,6 @@
                        HorizontalOptions="Center" />
             </VerticalStackLayout>
             
-            <!-- Placeholder -->
-            <controls:AppCard>
-                <Border BackgroundColor="{StaticResource BackgroundTertiary}"
-                        Stroke="{StaticResource BorderMedium}"
-                        StrokeThickness="2"
-                        StrokeDashArray="4,4"
-                        StrokeShape="RoundRectangle 8"
-                        Padding="24">
-                    <Label Text="Full help system will be developed in Phase 2"
-                           Style="{StaticResource Caption}"
-                           HorizontalOptions="Center" />
-                </Border>
-            </controls:AppCard>
             
         </VerticalStackLayout>
     </ScrollView>

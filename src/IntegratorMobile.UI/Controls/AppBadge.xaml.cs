@@ -39,6 +39,10 @@ public partial class AppBadge : ContentView
     {
         switch (BadgeType)
         {
+            case BadgeType.Primary:
+                BadgeBorder.BackgroundColor = Color.FromArgb("#EEF2FF");
+                BadgeLabel.TextColor = Color.FromArgb("#4338CA");
+                break;
             case BadgeType.Success:
                 BadgeBorder.BackgroundColor = Color.FromArgb("#DCFCE7");
                 BadgeLabel.TextColor = Color.FromArgb("#166534");
@@ -79,6 +83,14 @@ public partial class AppBadge : ContentView
                 BadgeBorder.BackgroundColor = Color.FromArgb("#E0F2FE");
                 BadgeLabel.TextColor = Color.FromArgb("#075985");
                 break;
+            case BadgeType.OnSite:
+                BadgeBorder.BackgroundColor = Color.FromArgb("#DCFCE7");
+                BadgeLabel.TextColor = Color.FromArgb("#166534");
+                break;
+            case BadgeType.Cancelled:
+                BadgeBorder.BackgroundColor = Color.FromArgb("#FEE2E2");
+                BadgeLabel.TextColor = Color.FromArgb("#991B1B");
+                break;
             default:
                 BadgeBorder.BackgroundColor = Color.FromArgb("#F1F5F9");
                 BadgeLabel.TextColor = Color.FromArgb("#475569");
@@ -90,6 +102,7 @@ public partial class AppBadge : ContentView
 public enum BadgeType
 {
     Default,
+    Primary,
     Success,
     Warning,
     Error,
@@ -100,5 +113,7 @@ public enum BadgeType
     Completed,
     NeedToReturn,
     Scheduled,
-    EnRoute
+    EnRoute,
+    OnSite,
+    Cancelled
 }

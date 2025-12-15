@@ -37,8 +37,20 @@ IntegratorMobile.sln
 │       ├── Models/                     # 4 model files
 │       └── Services/                   # 4 service files
 │
-└── tests/
-    └── IntegratorMobile.Tests/         # xUnit tests
+├── tests/
+│   └── IntegratorMobile.Tests/         # xUnit tests (100+ tests)
+│       ├── Models/                     # Model unit tests
+│       ├── Services/                   # Service unit tests
+│       ├── Logic/                      # Extracted logic tests
+│       ├── Integration/                # Workflow integration tests
+│       └── FeatureParity/              # Vue-MAUI parity validation
+│
+└── docs/
+    ├── requirements/                   # Functional requirements
+    ├── design-system/                  # Design tokens & components
+    ├── progress/                       # Implementation status
+    ├── architecture/                   # MAUI architecture
+    └── testing/                        # Testing strategy
 ```
 
 ## Key Files
@@ -170,11 +182,43 @@ dotnet test tests/IntegratorMobile.Tests/
 ./run-mac.sh
 ```
 
+## Testing
+
+### Current Test Coverage (~55%)
+| Category | Tests | Location |
+|----------|-------|----------|
+| Model Tests | 25 | `tests/.../Models/` |
+| Service Tests | 18 | `tests/.../Services/` |
+| Logic Tests | 45 | `tests/.../Logic/` |
+| Integration | 8 | `tests/.../Integration/` |
+| Feature Parity | 7 | `tests/.../FeatureParity/` |
+
+### Test Commands
+```bash
+# Run all tests
+dotnet test tests/IntegratorMobile.Tests/
+
+# Run specific category
+dotnet test --filter "FullyQualifiedName~Models"
+dotnet test --filter "FullyQualifiedName~Integration"
+```
+
+### Testing Strategy Reference
+- Full strategy: `@docs/testing/testing-strategy.md`
+- Key insight: ViewModels need `INavigationService` abstraction for testability
+
+### Path to Higher Coverage
+1. **Refactor ViewModels** - Abstract `Shell.Current` behind `INavigationService`
+2. **Add ViewModel Tests** - Mock navigation and services
+3. **Add Converter Tests** - Requires MAUI test project
+4. **Add UI Automation** - Appium or MAUI Test framework
+
 ## Known Issues
 
 1. **Xcode Version Warning** - Suppressed via `Directory.Build.props`
 2. **iOS Signing** - Not configured for physical devices
 3. **Hot Reload** - May require restart for XAML changes
+4. **ViewModel Testability** - Coupled to `Shell.Current` (see testing strategy)
 
 ## Performance Considerations
 
@@ -183,3 +227,11 @@ dotnet test tests/IntegratorMobile.Tests/
 - Use `CollectionView` instead of `ListView`
 - Implement `INotifyPropertyChanged` correctly
 - Consider virtualization for large lists
+
+## Key Documentation References
+
+- Testing Strategy: `@docs/testing/testing-strategy.md`
+- MAUI Architecture: `@docs/architecture/maui-architecture.md`
+- Design System: `@docs/design-system/design-tokens.md`
+- Feature Matrix: `@docs/requirements/feature-matrix.md`
+- Technical Decisions: `@llm-agents/maui-agent/memory/decisions.md`

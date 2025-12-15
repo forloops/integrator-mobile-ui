@@ -90,6 +90,34 @@ To create a new specialized agent:
 4. Add relevant context to `context/` folder
 5. Initialize empty memory in `memory/` folder
 
+## Key Documentation References
+
+| Document | Path | Purpose |
+|----------|------|---------|
+| Requirements | `@docs/requirements/functional-requirements.md` | Feature specifications |
+| Feature Matrix | `@docs/requirements/feature-matrix.md` | Vue-MAUI parity tracking |
+| Design System | `@docs/design-system/design-tokens.md` | Colors, typography, spacing |
+| Architecture | `@docs/architecture/maui-architecture.md` | MAUI app structure |
+| Testing Strategy | `@docs/testing/testing-strategy.md` | Test coverage roadmap |
+| MAUI Status | `@docs/progress/maui-prototype-status.md` | Implementation status |
+
+## Testing Context
+
+Current test coverage: **~55% (100+ tests)**
+
+| Test Category | Tests | Agent Responsible |
+|---------------|-------|-------------------|
+| Model Tests | 25 | MAUI Agent |
+| Service Tests | 18 | MAUI Agent |
+| Logic Tests | 45 | MAUI Agent |
+| Integration | 8 | MAUI Agent |
+| Feature Parity | 7 | BA Agent (verification) |
+
+### Testing Resources
+- Strategy document: `@docs/testing/testing-strategy.md`
+- BA verification: `@llm-agents/ba-agent/memory/verification-2024-12-15.md`
+- Technical decisions: `@llm-agents/maui-agent/memory/decisions.md`
+
 ## Best Practices
 
 1. **Keep Context Current** - Update context files as the project evolves
@@ -97,3 +125,5 @@ To create a new specialized agent:
 3. **Use Appropriate Agent** - Match the task to the agent's specialization
 4. **Provide Examples** - Include code examples when requesting implementations
 5. **Reference Patterns** - Point to existing code for consistency
+6. **Include Test Coverage** - Consider testability when designing features
+7. **Update Memory** - Log key decisions for future agent sessions

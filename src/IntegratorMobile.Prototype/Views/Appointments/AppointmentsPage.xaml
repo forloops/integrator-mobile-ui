@@ -7,16 +7,73 @@
              x:Class="IntegratorMobile.Views.Appointments.AppointmentsPage"
              x:DataType="vm:AppointmentsPageViewModel"
              Title="My Appointments"
+             Shell.NavBarIsVisible="False"
              BackgroundColor="{StaticResource BackgroundSecondary}">
-
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Back" Command="{Binding GoBackCommand}" />
-    </ContentPage.ToolbarItems>
     
-    <Grid RowDefinitions="Auto,*">
+    <Grid RowDefinitions="Auto,Auto,Auto,*">
+        
+        <!-- Custom Header -->
+        <Grid Grid.Row="0" 
+              BackgroundColor="{StaticResource Slate700}" 
+              Padding="12"
+              HeightRequest="56"
+              ColumnDefinitions="Auto,*,Auto">
+            <Button Text="☰"
+                    FontSize="24"
+                    TextColor="White"
+                    BackgroundColor="Transparent"
+                    Clicked="OnMenuClicked"
+                    WidthRequest="44"
+                    HeightRequest="44"
+                    VerticalOptions="Center" />
+            <Label Grid.Column="1" 
+                   Text="My Appointments"
+                   TextColor="White"
+                   FontSize="18"
+                   FontFamily="InterSemiBold"
+                   VerticalOptions="Center"
+                   Margin="8,0,0,0" />
+            <Button Grid.Column="2"
+                    Text="🔍"
+                    FontSize="20"
+                    TextColor="White"
+                    BackgroundColor="Transparent"
+                    Command="{Binding ToggleSearchCommand}"
+                    WidthRequest="44"
+                    HeightRequest="44"
+                    VerticalOptions="Center" />
+        </Grid>
+        
+        <!-- Search Bar (Collapsible) -->
+        <Border Grid.Row="1"
+                BackgroundColor="{StaticResource BackgroundPrimary}"
+                Padding="12"
+                IsVisible="{Binding IsSearchVisible}">
+            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                <Border BackgroundColor="{StaticResource BackgroundTertiary}"
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 8"
+                        Padding="12,0">
+                    <Entry Placeholder="Search appointments..."
+                           Text="{Binding SearchQuery, Mode=TwoWay}"
+                           FontFamily="InterRegular"
+                           FontSize="14"
+                           BackgroundColor="Transparent"
+                           ReturnCommand="{Binding SearchCommand}" />
+                </Border>
+                <Button Grid.Column="1"
+                        Text="✕"
+                        FontSize="16"
+                        TextColor="{StaticResource TextSecondary}"
+                        BackgroundColor="Transparent"
+                        Command="{Binding ClearSearchCommand}"
+                        WidthRequest="40"
+                        HeightRequest="40" />
+            </Grid>
+        </Border>
         
         <!-- Tab Header -->
-        <Grid Grid.Row="0" 
+        <Grid Grid.Row="2" 
               ColumnDefinitions="*,*,*"
               BackgroundColor="{StaticResource Slate700}"
               Padding="0,8">
@@ -46,7 +103,7 @@
         </Grid>
         
         <!-- Tab Content -->
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="3">
             
             <!-- Unresolved Tab -->
             <ScrollView IsVisible="{Binding SelectedTabIndex, Converter={StaticResource IntEqualConverter}, ConverterParameter=0}">
@@ -224,7 +281,7 @@
         </Grid>
         
         <!-- Loading -->
-        <ActivityIndicator Grid.RowSpan="2"
+        <ActivityIndicator Grid.RowSpan="4"
                           IsRunning="{Binding IsBusy}"
                           IsVisible="{Binding IsBusy}"
                           Color="{StaticResource Primary600}"

@@ -16,8 +16,10 @@ docs/
 ├── progress/                   # Development progress tracking
 │   ├── maui-prototype-status.md
 │   └── vue-prototype-comparison.md
-└── architecture/               # Technical architecture
-    └── maui-architecture.md
+├── architecture/               # Technical architecture
+│   └── maui-architecture.md
+└── testing/                    # Testing documentation
+    └── testing-strategy.md
 ```
 
 ## Quick Links
@@ -27,6 +29,7 @@ docs/
 - [Functional Requirements](requirements/functional-requirements.md) - Full requirements specification
 - [Design System](design-system/design-tokens.md) - Color tokens and typography
 - [Components](design-system/components.md) - Reusable UI components
+- [Testing Strategy](testing/testing-strategy.md) - Test coverage roadmap and implementation guide
 
 ## Project Overview
 

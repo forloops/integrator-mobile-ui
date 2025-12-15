@@ -18,7 +18,8 @@ public partial class HomePageViewModel : BaseViewModel
     [ObservableProperty]
     private int _unresolvedCount;
 
-    public HomePageViewModel(IAuthService authService, IAppointmentService appointmentService)
+    public HomePageViewModel(IAuthService authService, IAppointmentService appointmentService, INavigationService navigationService)
+        : base(navigationService)
     {
         _authService = authService;
         _appointmentService = appointmentService;
@@ -47,53 +48,53 @@ public partial class HomePageViewModel : BaseViewModel
     [RelayCommand]
     private async Task GoToAppointmentsAsync()
     {
-        await Shell.Current.GoToAsync("appointments");
+        await NavigationService!.GoToAsync("appointments");
     }
 
     [RelayCommand]
     private async Task GoToOperationJobsAsync()
     {
-        await Shell.Current.DisplayAlert("Operations Jobs", "Operations Jobs page coming soon!", "OK");
+        await NavigationService!.DisplayAlertAsync("Operations Jobs", "Operations Jobs page coming soon!", "OK");
     }
 
     [RelayCommand]
     private async Task GoToDirectoryAsync()
     {
-        await Shell.Current.DisplayAlert("Employee Directory", "Employee Directory page coming soon!", "OK");
+        await NavigationService!.DisplayAlertAsync("Employee Directory", "Employee Directory page coming soon!", "OK");
     }
 
     [RelayCommand]
     private async Task GoToProfileAsync()
     {
-        await Shell.Current.GoToAsync("profile");
+        await NavigationService!.GoToAsync("profile");
     }
 
     [RelayCommand]
     private async Task GoToSettingsAsync()
     {
-        await Shell.Current.GoToAsync("settings");
+        await NavigationService!.GoToAsync("settings");
     }
 
     [RelayCommand]
     private async Task GoToDiagnosticsAsync()
     {
-        await Shell.Current.DisplayAlert("Diagnostics", "Diagnostics page coming soon!", "OK");
+        await NavigationService!.DisplayAlertAsync("Diagnostics", "Diagnostics page coming soon!", "OK");
     }
 
     [RelayCommand]
     private async Task GoToHelpAsync()
     {
-        await Shell.Current.DisplayAlert("Help", "Help page coming soon!", "OK");
+        await NavigationService!.DisplayAlertAsync("Help", "Help page coming soon!", "OK");
     }
 
     [RelayCommand]
     private async Task LogoutAsync()
     {
-        var confirm = await Shell.Current.DisplayAlert("Logout", "Are you sure you want to logout?", "Yes", "No");
+        var confirm = await NavigationService!.DisplayAlertAsync("Logout", "Are you sure you want to logout?", "Yes", "No");
         if (confirm)
         {
             await _authService.Logout();
-            await Shell.Current.GoToAsync("//identify");
+            await NavigationService.GoToAsync("//identify");
         }
     }
 }

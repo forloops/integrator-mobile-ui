@@ -17,7 +17,8 @@ public partial class ManualLoginPageViewModel : BaseViewModel
     [ObservableProperty]
     private bool _showError;
 
-    public ManualLoginPageViewModel(IAuthService authService)
+    public ManualLoginPageViewModel(IAuthService authService, INavigationService navigationService)
+        : base(navigationService)
     {
         _authService = authService;
         Title = "Manual Login";
@@ -48,7 +49,7 @@ public partial class ManualLoginPageViewModel : BaseViewModel
             {
                 ShowError = false;
                 // Navigate to home - replace the navigation stack
-                await Shell.Current.GoToAsync("//home");
+                await NavigationService!.GoToAsync("//home");
             }
             else
             {
@@ -61,7 +62,7 @@ public partial class ManualLoginPageViewModel : BaseViewModel
     [RelayCommand]
     private async Task GoBackAsync()
     {
-        await Shell.Current.GoToAsync("..");
+        await NavigationService!.GoBackAsync();
     }
 
     partial void OnUsernameChanged(string value)

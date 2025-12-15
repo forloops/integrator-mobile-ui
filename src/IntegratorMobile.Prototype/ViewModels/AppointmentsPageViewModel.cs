@@ -42,7 +42,8 @@ public partial class AppointmentsPageViewModel : BaseViewModel
     [ObservableProperty]
     private string _searchQuery = string.Empty;
 
-    public AppointmentsPageViewModel(IAppointmentService appointmentService)
+    public AppointmentsPageViewModel(IAppointmentService appointmentService, INavigationService navigationService)
+        : base(navigationService)
     {
         _appointmentService = appointmentService;
         Title = "My Appointments";
@@ -145,13 +146,13 @@ public partial class AppointmentsPageViewModel : BaseViewModel
     {
         if (appointment == null) return;
 
-        await Shell.Current.GoToAsync($"appointments/detail?id={appointment.Id}");
+        await NavigationService!.GoToAsync($"appointments/detail?id={appointment.Id}");
     }
 
     [RelayCommand]
     private async Task DoneForDayAsync()
     {
-        var confirm = await Shell.Current.DisplayAlert(
+        var confirm = await NavigationService!.DisplayAlertAsync(
             "Complete My Day",
             "This will mark all remaining appointments as 'Need to Return'. Are you sure?",
             "Yes, I'm Done",
@@ -167,7 +168,7 @@ public partial class AppointmentsPageViewModel : BaseViewModel
                 }
                 
                 await LoadAppointmentsAsync();
-                await Shell.Current.DisplayAlert("Done", "Your day has been completed. Remaining appointments have been marked for rescheduling.", "OK");
+                await NavigationService!.DisplayAlertAsync("Done", "Your day has been completed. Remaining appointments have been marked for rescheduling.", "OK");
             });
         }
     }
@@ -181,7 +182,7 @@ public partial class AppointmentsPageViewModel : BaseViewModel
     [RelayCommand]
     private async Task GoBackAsync()
     {
-        await Shell.Current.GoToAsync("..");
+        await NavigationService!.GoBackAsync();
     }
 
     [RelayCommand]

@@ -1,4 +1,5 @@
 using IntegratorMobile.MockData.Services;
+using IntegratorMobile.Services;
 using IntegratorMobile.ViewModels;
 using IntegratorMobile.Views.Auth;
 using IntegratorMobile.Views.Home;
@@ -27,6 +28,7 @@ public static class MauiProgram
         // Register services
         builder.Services.AddSingleton<IAuthService, MockAuthService>();
         builder.Services.AddSingleton<IAppointmentService, MockAppointmentService>();
+        builder.Services.AddSingleton<INavigationService, ShellNavigationService>();
 
         // Register ViewModels
         builder.Services.AddTransient<IdentifyPageViewModel>();

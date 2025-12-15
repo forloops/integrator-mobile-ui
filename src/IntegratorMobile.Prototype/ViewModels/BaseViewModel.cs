@@ -1,9 +1,12 @@
 using CommunityToolkit.Mvvm.ComponentModel;
+using IntegratorMobile.MockData.Services;
 
 namespace IntegratorMobile.ViewModels;
 
 public partial class BaseViewModel : ObservableObject
 {
+    protected readonly INavigationService? NavigationService;
+
     [ObservableProperty]
     private bool _isBusy;
 
@@ -14,6 +17,15 @@ public partial class BaseViewModel : ObservableObject
     private string _errorMessage = string.Empty;
 
     public bool IsNotBusy => !IsBusy;
+
+    protected BaseViewModel()
+    {
+    }
+
+    protected BaseViewModel(INavigationService navigationService)
+    {
+        NavigationService = navigationService;
+    }
 
     protected async Task ExecuteAsync(Func<Task> operation, string? busyMessage = null)
     {

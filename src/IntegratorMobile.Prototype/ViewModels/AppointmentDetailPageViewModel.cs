@@ -36,7 +36,8 @@ public partial class AppointmentDetailPageViewModel : BaseViewModel
     [ObservableProperty]
     private string _completeStepStatus = "Locked";
 
-    public AppointmentDetailPageViewModel(IAppointmentService appointmentService)
+    public AppointmentDetailPageViewModel(IAppointmentService appointmentService, INavigationService navigationService)
+        : base(navigationService)
     {
         _appointmentService = appointmentService;
         Title = "Appointment Details";
@@ -83,7 +84,7 @@ public partial class AppointmentDetailPageViewModel : BaseViewModel
     [RelayCommand]
     private async Task BeginAppointmentAsync()
     {
-        var result = await Shell.Current.DisplayAlert(
+        var result = await NavigationService!.DisplayAlertAsync(
             "Begin Appointment?",
             "Enable En Route Time to track your travel time to the job site.",
             "CONFIRM",
@@ -95,13 +96,13 @@ public partial class AppointmentDetailPageViewModel : BaseViewModel
             {
                 // User wants En Route tracking
                 await _appointmentService.UpdateAppointmentStatus(AppointmentId, AppointmentStatus.EnRoute);
-                await Shell.Current.GoToAsync($"appointments/drive?id={AppointmentId}");
+                await NavigationService.GoToAsync($"appointments/drive?id={AppointmentId}");
             }
             else
             {
                 // Skip to arrival
                 await _appointmentService.UpdateAppointmentStatus(AppointmentId, AppointmentStatus.OnSite);
-                await Shell.Current.GoToAsync($"appointments/arrival?id={AppointmentId}");
+                await NavigationService.GoToAsync($"appointments/arrival?id={AppointmentId}");
             }
         }
     }
@@ -109,39 +110,39 @@ public partial class AppointmentDetailPageViewModel : BaseViewModel
     [RelayCommand]
     private async Task GoToDriveAsync()
     {
-        await Shell.Current.GoToAsync($"appointments/drive?id={AppointmentId}");
+        await NavigationService!.GoToAsync($"appointments/drive?id={AppointmentId}");
     }
 
     [RelayCommand]
     private async Task GoToArrivalAsync()
     {
-        await Shell.Current.GoToAsync($"appointments/arrival?id={AppointmentId}");
+        await NavigationService!.GoToAsync($"appointments/arrival?id={AppointmentId}");
     }
 
     [RelayCommand]
     private async Task GoToSurveyAsync()
     {
         // Navigate to system/building list
-        await Shell.Current.GoToAsync($"appointments/system?id={AppointmentId}");
+        await NavigationService!.GoToAsync($"appointments/system?id={AppointmentId}");
     }
 
     [RelayCommand]
     private async Task GoToCompleteAsync()
     {
-        await Shell.Current.GoToAsync($"appointments/complete?id={AppointmentId}");
+        await NavigationService!.GoToAsync($"appointments/complete?id={AppointmentId}");
     }
 
     [RelayCommand]
     private async Task SelectWorkItemAsync(WorkItem workItem)
     {
         if (workItem == null) return;
-        await Shell.Current.GoToAsync($"appointments/workitem?id={workItem.Id}");
+        await NavigationService!.GoToAsync($"appointments/workitem?id={workItem.Id}");
     }
 
     [RelayCommand]
     private async Task CancelOrRescheduleAsync()
     {
-        var action = await Shell.Current.DisplayActionSheet(
+        var action = await NavigationService!.DisplayActionSheetAsync(
             "Cancel or Reschedule",
             "Cancel",
             null,
@@ -150,11 +151,11 @@ public partial class AppointmentDetailPageViewModel : BaseViewModel
 
         if (action == "Reschedule Appointment")
         {
-            await Shell.Current.DisplayAlert("Reschedule", "Reschedule functionality coming soon!", "OK");
+            await NavigationService.DisplayAlertAsync("Reschedule", "Reschedule functionality coming soon!", "OK");
         }
         else if (action == "Cancel Appointment")
         {
-            var confirm = await Shell.Current.DisplayAlert(
+            var confirm = await NavigationService.DisplayAlertAsync(
                 "Cancel Appointment",
                 "Are you sure you want to cancel this appointment?",
                 "Yes, Cancel",
@@ -163,7 +164,7 @@ public partial class AppointmentDetailPageViewModel : BaseViewModel
             if (confirm && Appointment != null)
             {
                 await _appointmentService.UpdateAppointmentStatus(AppointmentId, AppointmentStatus.Cancelled);
-                await Shell.Current.GoToAsync("..");
+                await NavigationService.GoBackAsync();
             }
         }
     }
@@ -189,7 +190,7 @@ public partial class AppointmentDetailPageViewModel : BaseViewModel
         }
         catch
         {
-            await Shell.Current.DisplayAlert("Navigation", 
+            await NavigationService!.DisplayAlertAsync("Navigation", 
                 $"Navigate to:\n{Appointment.Location.FullAddress}", "OK");
         }
     }
@@ -205,7 +206,7 @@ public partial class AppointmentDetailPageViewModel : BaseViewModel
         }
         catch
         {
-            await Shell.Current.DisplayAlert("Call", $"Call {phone}", "OK");
+            await NavigationService!.DisplayAlertAsync("Call", $"Call {phone}", "OK");
         }
     }
 
@@ -221,6 +222,6 @@ public partial class AppointmentDetailPageViewModel : BaseViewModel
     [RelayCommand]
     private async Task GoBackAsync()
     {
-        await Shell.Current.GoToAsync("..");
+        await NavigationService!.GoBackAsync();
     }
 }

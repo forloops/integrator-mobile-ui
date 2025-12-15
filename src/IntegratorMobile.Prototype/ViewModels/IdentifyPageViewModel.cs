@@ -14,7 +14,8 @@ public partial class IdentifyPageViewModel : BaseViewModel
     [ObservableProperty]
     private bool _showError;
 
-    public IdentifyPageViewModel(IAuthService authService)
+    public IdentifyPageViewModel(IAuthService authService, INavigationService navigationService)
+        : base(navigationService)
     {
         _authService = authService;
         Title = "Company Identification";
@@ -38,7 +39,7 @@ public partial class IdentifyPageViewModel : BaseViewModel
             {
                 ShowError = false;
                 // Navigate to login page
-                await Shell.Current.GoToAsync("login");
+                await NavigationService!.GoToAsync("login");
             }
             else
             {

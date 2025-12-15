@@ -240,19 +240,132 @@
                     </VerticalStackLayout>
                 </Border>
                 
-                <!-- Placeholder Card -->
-                <Border BackgroundColor="#F8FAFC"
-                        Stroke="#CBD5E1"
-                        StrokeThickness="2"
+                <!-- Recent Activity -->
+                <Border BackgroundColor="White"
+                        Stroke="#E2E8F0"
+                        StrokeThickness="1"
                         StrokeShape="RoundRectangle 12"
-                        StrokeDashArray="6,4"
-                        Padding="24"
+                        Padding="16"
+                        Margin="0,8,0,0">
+                    <VerticalStackLayout Spacing="12">
+                        <HorizontalStackLayout>
+                            <Label Text="Recent Activity"
+                                   FontSize="16"
+                                   FontAttributes="Bold"
+                                   TextColor="#1E293B"
+                                   HorizontalOptions="StartAndExpand" />
+                            <Label Text="View All ›"
+                                   FontSize="12"
+                                   TextColor="#4338CA"
+                                   VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                        
+                        <!-- Activity Item 1 -->
+                        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                            <Border WidthRequest="36" HeightRequest="36"
+                                    BackgroundColor="#DCFCE7"
+                                    StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 18">
+                                <Label Text="✓" FontSize="16" TextColor="#16A34A"
+                                       HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Border>
+                            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                <Label Text="Completed: Sunset Plaza HOA"
+                                       FontSize="13"
+                                       FontAttributes="Bold"
+                                       TextColor="#1E293B" />
+                                <Label Text="HVAC Inspection completed"
+                                       FontSize="11"
+                                       TextColor="#64748B" />
+                            </VerticalStackLayout>
+                            <Label Grid.Column="2" Text="2h ago"
+                                   FontSize="10"
+                                   TextColor="#94A3B8"
+                                   VerticalOptions="Center" />
+                        </Grid>
+                        
+                        <BoxView HeightRequest="1" Color="#E2E8F0" />
+                        
+                        <!-- Activity Item 2 -->
+                        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                            <Border WidthRequest="36" HeightRequest="36"
+                                    BackgroundColor="#DBEAFE"
+                                    StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 18">
+                                <Label Text="📷" FontSize="14"
+                                       HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Border>
+                            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                <Label Text="Photo uploaded"
+                                       FontSize="13"
+                                       FontAttributes="Bold"
+                                       TextColor="#1E293B" />
+                                <Label Text="Arrival photo - Downtown Medical"
+                                       FontSize="11"
+                                       TextColor="#64748B" />
+                            </VerticalStackLayout>
+                            <Label Grid.Column="2" Text="3h ago"
+                                   FontSize="10"
+                                   TextColor="#94A3B8"
+                                   VerticalOptions="Center" />
+                        </Grid>
+                        
+                        <BoxView HeightRequest="1" Color="#E2E8F0" />
+                        
+                        <!-- Activity Item 3 -->
+                        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                            <Border WidthRequest="36" HeightRequest="36"
+                                    BackgroundColor="#FEF3C7"
+                                    StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 18">
+                                <Label Text="🚗" FontSize="14"
+                                       HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Border>
+                            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                <Label Text="En Route"
+                                       FontSize="13"
+                                       FontAttributes="Bold"
+                                       TextColor="#1E293B" />
+                                <Label Text="Harbor View Apartments"
+                                       FontSize="11"
+                                       TextColor="#64748B" />
+                            </VerticalStackLayout>
+                            <Label Grid.Column="2" Text="Yesterday"
+                                   FontSize="10"
+                                   TextColor="#94A3B8"
+                                   VerticalOptions="Center" />
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+                
+                <!-- Next Appointment Card -->
+                <Border BackgroundColor="#4338CA"
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 12"
+                        Padding="16"
                         Margin="0,8,0,16">
-                    <Label Text="Home page content will be developed in Phase 2"
-                           FontSize="12"
-                           TextColor="#94A3B8"
-                           HorizontalOptions="Center"
-                           HorizontalTextAlignment="Center" />
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnAppointmentsTapped" />
+                    </Border.GestureRecognizers>
+                    <Grid ColumnDefinitions="*,Auto">
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="NEXT APPOINTMENT"
+                                   FontSize="10"
+                                   TextColor="#C7D2FE"
+                                   CharacterSpacing="1" />
+                            <Label Text="Sunset Plaza HOA"
+                                   FontSize="16"
+                                   FontAttributes="Bold"
+                                   TextColor="White" />
+                            <Label Text="8:00 AM - HVAC Maintenance"
+                                   FontSize="12"
+                                   TextColor="#E0E7FF" />
+                        </VerticalStackLayout>
+                        <Label Grid.Column="1" Text="›"
+                               FontSize="28"
+                               TextColor="White"
+                               VerticalOptions="Center" />
+                    </Grid>
                 </Border>
                 
             </VerticalStackLayout>
